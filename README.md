@@ -1,6 +1,6 @@
 # Description
 
-Have you ever wanted to next Variables? Unfortunately, that's not possible with teh standard Variables screen.
+Have you ever wanted to next Variables? Unfortunately, that's not possible with the standard Variables screen.
 
 But now you can!
 
