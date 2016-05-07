@@ -1,5 +1,7 @@
 # Description
 
+[![Join the chat at https://gitter.im/jessehouwing/vsts-variable-tasks](https://badges.gitter.im/jessehouwing/vsts-variable-tasks.svg)](https://gitter.im/jessehouwing/vsts-variable-tasks?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 This Extension contains a slowly growing collection of tasks that help you manipulate and (soon) validate the values of build variables.
 
 # Expand Variables
