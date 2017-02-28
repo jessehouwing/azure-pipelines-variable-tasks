@@ -34,6 +34,32 @@
             "name": "Value",
             "required": false,
             "type": "string"
+        },
+        {
+            "name": "applyConstraint",
+            "type": "boolean",
+            "label": "Only apply value if constraint is met",
+            "defaultValue": "False",
+            "required": false,
+            "helpMarkDown": "If checked you can set a constraint using a regex on a certain variable which must be met before the actual value will be set."
+        },
+        {
+            "name": "IfVariable",
+            "type": "string",
+            "label": "Variable to validate",
+            "defaultValue": "",
+            "required": false,
+            "visibleRule": "applyConstraint = true",
+            "helpMarkDown": "A variable or value that will be checked. Here you include the `$(...)`."
+        },
+        {
+            "name": "IfValueRegex",
+            "type": "string",
+            "label": "Regular expression",
+            "defaultValue": "",
+            "required": false,
+            "visibleRule": "applyConstraint = true",
+            "helpMarkDown": "A regular expression you can use to validate the variable with."
         }
     ],
     "instanceNameFormat": "Set variable: $(VariableName) to: '$(Value)'",
