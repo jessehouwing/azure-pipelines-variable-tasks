@@ -6,11 +6,11 @@
   "helpMarkDown": "Version: #{Build.BuildNumber}#. [More Information](https://github.com/jessehouwing/vsts-variable-tasks/wiki/)",
   "category": "Utility",
   "author": "Jesse Houwing",
-  "version": {
-    "Major": 0,
-    "Minor": 0,
-    "Patch": 0
-  },
+    "version": {
+        "Major": 1,
+        "Minor": 0,
+        "Patch": 1031
+    },
   "visibility": [
     "Build",
     "Release"

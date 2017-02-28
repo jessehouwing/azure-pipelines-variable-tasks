@@ -7,9 +7,9 @@
     "category": "Utility",
     "author": "Jesse Houwing",
     "version": {
-        "Major": 0,
+        "Major": 1,
         "Minor": 0,
-        "Patch": 0
+        "Patch": 1031
     },
     "visibility": [
         "Build",
@@ -60,20 +60,38 @@
             "required": false,
             "visibleRule": "applyConstraint = true",
             "helpMarkDown": "A regular expression you can use to validate the variable with."
+        },
+        {
+            "name": "applyAlternativeValue",
+            "type": "boolean",
+            "label": "Apply an alternative value",
+            "defaultValue": "False",
+            "required": false,
+            "visibleRule": "applyConstraint = true",
+            "helpMarkDown": "If you want to apply an alternative value in case constraint is not met."
+        },
+        {
+            "name": "AlternativeValue",
+            "type": "string",
+            "label": "Alternative value",
+            "defaultValue": "",
+            "required": false,
+            "visibleRule": "applyAlternativeValue = true",
+            "helpMarkDown": "Value to apply if constraint is not met."
         }
     ],
     "instanceNameFormat": "Set variable: $(VariableName) to: '$(Value)'",
-  "execution": {
-    "Node": {
-      "target": "vsts-variable-set.js",
-      "argumentFormat": ""
-    },
-    "PowerShell": {
-      "target": "$(currentDirectory)\\vsts-variable-set.ps1",
-      "argumentFormat": "",
-      "platforms": [
-        "windows"
-      ]
+    "execution": {
+        "Node": {
+            "target": "vsts-variable-set.js",
+            "argumentFormat": ""
+        },
+        "PowerShell": {
+            "target": "$(currentDirectory)\\vsts-variable-set.ps1",
+            "argumentFormat": "",
+            "platforms": [
+                "windows"
+            ]
+        }
     }
-  }
 }
