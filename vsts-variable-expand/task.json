@@ -7,9 +7,9 @@
   "category": "Utility",
   "author": "Jesse Houwing",
     "version": {
-        "Major": 1,
+        "Major": 0,
         "Minor": 0,
-        "Patch": 1031
+        "Patch": 0
     },
   "visibility": [
     "Build",

@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "jessehouwing-vsts-variable-tasks",
     "name": "Variable Toolbox",
-    "version": "1.0.1031",
+    "version": "0.0.0",
     "publisher": "jessehouwing",
     "targets": [
         {
