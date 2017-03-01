@@ -21,12 +21,12 @@ Write-Verbose "Entering script $($MyInvocation.MyCommand.Name)"
 Write-Verbose "Parameter Values"
 $PSBoundParameters.Keys | %{ Write-Verbose "$_ = $($PSBoundParameters[$_])" }
 
-if ($applyConstraint.ToUpper() -eq "TRUE") 
+if ($applyConstraint -eq $true) 
 {
     Write-Verbose "Checking if $IfVariable is matched by $IfValueRegex"
     if (-Not($IfVariable -match $IfValueRegex))
     {
-        if ($applyAlternativeValue -eq "FALSE")
+        if ($applyAlternativeValue -eq $false)
         {
             Write-Verbose "Value not set. Could not match if constraint."
             exit
