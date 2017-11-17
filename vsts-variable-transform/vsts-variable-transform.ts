@@ -36,11 +36,11 @@ const variable = tl.getInput("variableName", true);
 
 if (variable.search(/^Build[._]BuildNumber$/i) >= 0) {
     tl.command("build.updatebuildnumber", null, value);
-    tl._writeLine(`Set buildnumber to: ${value}`);
+    console.log(`Set buildnumber to: ${value}`);
     tl.setResult(tl.TaskResult.Succeeded, `Set buildnumber to: ${value}`);
 } else {
     tl.setVariable(variable, value);
-    tl._writeLine(`Set ${variable} to: ${value}`);
+    console.log(`Set ${variable} to: ${value}`);
     tl.setResult(tl.TaskResult.Succeeded, `Set ${variable} to: ${value}`);
 }
 
@@ -122,7 +122,7 @@ function applyManipulations(value: string): string {
             padCharacter = " ";
         }
         else if (padCharacter.length !== 1) {
-            tl._writeError("More than one padding character specified.");
+            console.log("More than one padding character specified.");
             tl.setResult(tl.TaskResult.Failed, "Failed");
             return;
         }
