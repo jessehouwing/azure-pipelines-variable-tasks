@@ -7,7 +7,7 @@
     "email": "jesse.houwing@gmail.com"
   },
   "dependencies": {
-    "vsts-task-lib": "^2.0.0-preview"
+    "vsts-task-lib": "^2.1.0"
   },
   "scripts": {
     "initdev:npm": "npm install",
