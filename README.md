@@ -1,6 +1,10 @@
-[![Donate](https://raw.githubusercontent.com/jessehouwing/vsts-variable-tasks/master/extension/images/donate.png)](https://www.paypal.me/JesseHouwing/5) [![Build Status](https://jessehouwing.visualstudio.com/DefaultCollection/_apis/public/build/definitions/4fb9b911-ce2e-4020-a507-3ca9adb2c8ac/32/badge)](https://jessehouwing.visualstudio.com/DefaultCollection/vsts-variable-tasks/_build?definitionId=32&_a=completed) [![Join the chat at https://gitter.im/jessehouwing/vsts-variable-tasks](https://badges.gitter.im/jessehouwing/vsts-variable-tasks.svg)](https://gitter.im/jessehouwing/vsts-variable-tasks?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Donate](https://raw.githubusercontent.com/jessehouwing/vsts-variable-tasks/master/extension/images/donate.png)](https://www.paypal.me/JesseHouwing/5) [![Build Status](https://jessehouwing.visualstudio.com/_apis/public/build/definitions/a88536a2-a889-45a3-a955-ddf1af8aeba1/47/badge)](https://jessehouwing.visualstudio.com/vsts-extensions/vsts-extensions%20Team/_build/index?definitionId=47&_a=completed) [![Join the chat at https://gitter.im/jessehouwing/vsts-variable-tasks](https://badges.gitter.im/jessehouwing/vsts-variable-tasks.svg)](https://gitter.im/jessehouwing/vsts-variable-tasks?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # Release Notes
+> **17-11-2017**
+
+> - Fixed: Set Build.BuldNumber doesn't work on most recent Windows Build agents. Updated to VSTS-Task-Lib 2.1.0 to fix.
+
 > **1-9-2016**
 
 > - Fixed: Expand Variable Task throws an error on Agent 2.x, you can now remove this task, it is no longer needed.
