@@ -1,4 +1,5 @@
 ﻿import tl = require("vsts-task-lib/task");
+import "core-js";
 
 const transformAction = tl.getInput("transformAction", true);
 let value = tl.getInput("value") || "";
@@ -121,20 +122,14 @@ function applyManipulations(value: string): string {
         if (!padCharacter) {
             padCharacter = " ";
         }
-        else if (padCharacter.length !== 1) {
-            console.log("More than one padding character specified.");
-            tl.setResult(tl.TaskResult.Failed, "Failed");
-            return;
-        }
 
         const padLength = +tl.getInput("padLength", true);
-        const padBase = Array(padLength).join(padCharacter);
         switch (padType) {
             case "left":
-                value = (padBase + value).slice(value.length);
+                value = value.padStart(padLength, padCharacter);
                 break;
             case "right":
-                value = (value + padBase).substring(0, padLength);
+                value = value.padEnd(padLength, padCharacter);
                 break;
         }
     }

@@ -5,6 +5,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <Name>vsts-variable-set</Name>
     <RootNamespace>vsts-variable-set</RootNamespace>
+    <ToolsVersionPromptShown>0.0</ToolsVersionPromptShown>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -39,7 +40,6 @@
     <Content Include="task.json" />
     <Content Include="tsconfig.json" />
     <Content Include="tslint.json" />
-    <Content Include="typings.json" />
     <Content Include="vsts-variable-set.ps1" />
   </ItemGroup>
   <ItemGroup>
