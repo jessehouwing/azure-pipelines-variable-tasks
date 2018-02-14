@@ -165,9 +165,6 @@ function searchAndReplace(value: string): string {
                 tl.warning("Found no matches");
                 return "";
             } else {
-                if (result.length > 1) {
-                    tl.warning("Found multiple matches, setting the first");
-                }
                 return result[0];
             }
         }
