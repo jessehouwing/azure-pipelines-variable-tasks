@@ -1,69 +1,86 @@
 {
-    "manifestVersion": 1,
-    "id": "jessehouwing-vsts-variable-tasks",
-    "name": "Variable Toolbox",
-    "version": "0.0.0",
-    "publisher": "jessehouwing",
-    "targets": [
-        {
-            "id": "Microsoft.VisualStudio.Services"
-        }
-    ],
-    "scope": [
-        "vso.build"
-    ],
-    "description": "Build and Release Management tasks for setting and expanding variables.",
-    "categories": [
-        "Build and release"
-    ],
-    "tags": [
-        "Extension",
-        "Release",
-        "Build",
-        "Variable",
-        "Expand",
-        "Override",
-        "Xpirit"
-    ],
-    "screenshots": [
-        {
-            "path": "extension/Images/Screenshots/in-workflow.png"
-        },
-        {
-            "path": "extension/Images/Screenshots/setvariable.png"
-        },
-        {
-            "path": "extension/Images/Screenshots/expandvariables.png"
+  "manifestVersion": 1,
+  "id": "jessehouwing-vsts-variable-tasks",
+  "name": "Variable Toolbox",
+  "version": "0.0.0",
+  "publisher": "jessehouwing",
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],
+  "scope": [
+    "vso.build"
+  ],
+  "description": "Build and Release Management tasks for setting and expanding variables.",
+  "categories": [
+    "Build and release"
+  ],
+  "tags": [
+    "Extension",
+    "Release",
+    "Build",
+    "Variable",
+    "Expand",
+    "Override",
+    "Xpirit"
+  ],
+  "screenshots": [
+    {
+      "path": "extension/Images/Screenshots/in-workflow.png"
+    },
+    {
+      "path": "extension/Images/Screenshots/setvariable.png"
+    },
+    {
+      "path": "extension/Images/Screenshots/expandvariables.png"
 
-        }
-    ],
-    "content": {
-        "details": {
-            "path": "readme.md"
-        },
-        "license": {
-            "path": "license.txt"
-        }
+    }
+  ],
+  "content": {
+    "details": {
+      "path": "readme.md"
     },
-    "links": {
-        "getstarted": {
-            "uri": "https://github.com/jessehouwing/vsts-variable-tasks/wiki"
-        },
-        "support": {
-            "uri": "https://github.com/jessehouwing/vsts-variable-tasks/issues"
-        }
+    "license": {
+      "path": "license.txt"
+    }
+  },
+  "links": {
+    "getstarted": {
+      "uri": "https://github.com/jessehouwing/vsts-tfvc-tasks/wiki"
     },
-    "repository": {
-        "type": "git",
-        "uri": "https://github.com/jessehouwing/vsts-variable-tasks"
+    "support": {
+      "uri": "https://github.com/jessehouwing/vsts-tfvc-tasks/issues"
+    }
+  },
+  "badges": [
+    {
+      "href": "https://paypal.me/jessehouwing/5",
+      "uri": "https://raw.githubusercontent.com/jessehouwing/vsts-variable-tasks/master/extension/images/donate.png",
+      "description": "Donate"
     },
-    "branding": {
-        "color": "rgb(36, 43, 50)",
-        "theme": "dark"
+    {
+      "href": "//gitter.im/jessehouwing/vsts-variable-tasks?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge",
+      "uri": "//badges.gitter.im/jessehouwing/vsts-variable-tasks.svg",
+      "description": "Chat"
     },
-    "icons": {
-        "default": "extension/images/extension-icon.png"
-    },
+    {
+      "href": "https://jessehouwing.visualstudio.com/vsts-extensions/vsts-extensions%20Team/_build/index?definitionId=47&_a=completed",
+      "uri": "https://jessehouwing.visualstudio.com/_apis/public/build/definitions/a88536a2-a889-45a3-a955-ddf1af8aeba1/47/badge",
+      "description": "Build"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "uri": "https://github.com/jessehouwing/vsts-variable-tasks"
+  },
+  "branding": {
+    "color": "rgb(36, 43, 50)",
+    "theme": "dark"
+  },
+  "icons": {
+    "default": "extension/images/extension-icon.png"
+  },
   "files": [
     {
       "path": "vsts-variable-set/ps_modules/vststasksdk"

@@ -1,5 +1,3 @@
-[![Donate](https://raw.githubusercontent.com/jessehouwing/vsts-variable-tasks/master/extension/images/donate.png)](https://www.paypal.me/JesseHouwing/5) [![Build Status](https://jessehouwing.visualstudio.com/_apis/public/build/definitions/a88536a2-a889-45a3-a955-ddf1af8aeba1/47/badge)](https://jessehouwing.visualstudio.com/vsts-extensions/vsts-extensions%20Team/_build/index?definitionId=47&_a=completed) [![Join the chat at https://gitter.im/jessehouwing/vsts-variable-tasks](https://badges.gitter.im/jessehouwing/vsts-variable-tasks.svg)](https://gitter.im/jessehouwing/vsts-variable-tasks?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 # Release Notes
 > **23-01-2018**
 > - Changed: Re-implemented Variable-Set in v3 PowerShell handler for better performance.
