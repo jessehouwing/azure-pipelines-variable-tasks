@@ -66,7 +66,13 @@
     },
   "files": [
     {
-      "path": "vsts-variable-set/vsts-variable-set.ps1"
+      "path": "vsts-variable-set/ps_modules/vststasksdk"
+    },
+    {
+      "path": "vsts-variable-set/vsts-variable-set.v1.ps1"
+    },
+    {
+      "path": "vsts-variable-set/vsts-variable-set.v3.ps1"
     },
     {
       "path": "vsts-variable-set/vsts-variable-set.js"

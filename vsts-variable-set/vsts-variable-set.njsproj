@@ -37,13 +37,53 @@
   <ItemGroup>
     <Content Include="icon.png" />
     <Content Include="package.json" />
+    <Content Include="ps_modules\VstsTaskSdk\FindFunctions.ps1" />
+    <Content Include="ps_modules\VstsTaskSdk\InputFunctions.ps1" />
+    <Content Include="ps_modules\VstsTaskSdk\LegacyFindFunctions.ps1" />
+    <Content Include="ps_modules\VstsTaskSdk\lib.json" />
+    <Content Include="ps_modules\VstsTaskSdk\LocalizationFunctions.ps1" />
+    <Content Include="ps_modules\VstsTaskSdk\LoggingCommandFunctions.ps1" />
+    <Content Include="ps_modules\VstsTaskSdk\LongPathFunctions.ps1" />
+    <Content Include="ps_modules\VstsTaskSdk\OutFunctions.ps1" />
+    <Content Include="ps_modules\VstsTaskSdk\ServerOMFunctions.ps1" />
+    <Content Include="ps_modules\VstsTaskSdk\Strings\resources.resjson\de-de\resources.resjson" />
+    <Content Include="ps_modules\VstsTaskSdk\Strings\resources.resjson\en-US\resources.resjson" />
+    <Content Include="ps_modules\VstsTaskSdk\Strings\resources.resjson\es-es\resources.resjson" />
+    <Content Include="ps_modules\VstsTaskSdk\Strings\resources.resjson\fr-fr\resources.resjson" />
+    <Content Include="ps_modules\VstsTaskSdk\Strings\resources.resjson\it-IT\resources.resjson" />
+    <Content Include="ps_modules\VstsTaskSdk\Strings\resources.resjson\ja-jp\resources.resjson" />
+    <Content Include="ps_modules\VstsTaskSdk\Strings\resources.resjson\ko-KR\resources.resjson" />
+    <Content Include="ps_modules\VstsTaskSdk\Strings\resources.resjson\ru-RU\resources.resjson" />
+    <Content Include="ps_modules\VstsTaskSdk\Strings\resources.resjson\zh-CN\resources.resjson" />
+    <Content Include="ps_modules\VstsTaskSdk\Strings\resources.resjson\zh-TW\resources.resjson" />
+    <Content Include="ps_modules\VstsTaskSdk\ToolFunctions.ps1" />
+    <Content Include="ps_modules\VstsTaskSdk\TraceFunctions.ps1" />
+    <Content Include="ps_modules\VstsTaskSdk\VstsTaskSdk.psd1" />
+    <Content Include="ps_modules\VstsTaskSdk\VstsTaskSdk.psm1" />
     <Content Include="task.json" />
     <Content Include="tsconfig.json" />
     <Content Include="tslint.json" />
-    <Content Include="vsts-variable-set.ps1" />
+    <Content Include="vsts-variable-set.v1.ps1" />
+    <Content Include="vsts-variable-set.v3.ps1" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="vsts-variable-set.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ps_modules\" />
+    <Folder Include="ps_modules\VstsTaskSdk\" />
+    <Folder Include="ps_modules\VstsTaskSdk\Strings\" />
+    <Folder Include="ps_modules\VstsTaskSdk\Strings\resources.resjson\" />
+    <Folder Include="ps_modules\VstsTaskSdk\Strings\resources.resjson\de-de\" />
+    <Folder Include="ps_modules\VstsTaskSdk\Strings\resources.resjson\en-US\" />
+    <Folder Include="ps_modules\VstsTaskSdk\Strings\resources.resjson\es-es\" />
+    <Folder Include="ps_modules\VstsTaskSdk\Strings\resources.resjson\fr-fr\" />
+    <Folder Include="ps_modules\VstsTaskSdk\Strings\resources.resjson\it-IT\" />
+    <Folder Include="ps_modules\VstsTaskSdk\Strings\resources.resjson\ja-jp\" />
+    <Folder Include="ps_modules\VstsTaskSdk\Strings\resources.resjson\ko-KR\" />
+    <Folder Include="ps_modules\VstsTaskSdk\Strings\resources.resjson\ru-RU\" />
+    <Folder Include="ps_modules\VstsTaskSdk\Strings\resources.resjson\zh-CN\" />
+    <Folder Include="ps_modules\VstsTaskSdk\Strings\resources.resjson\zh-TW\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />

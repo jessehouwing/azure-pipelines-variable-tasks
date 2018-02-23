@@ -43,11 +43,15 @@
       "argumentFormat": ""
     },
     "PowerShell": {
-      "target": "$(currentDirectory)\\vsts-variable-set.ps1",
+      "target": "$(currentDirectory)\\vsts-variable-set.v1.ps1",
       "argumentFormat": "",
       "platforms": [
         "windows"
       ]
+    },
+    "PowerShell3": {
+      "target": "$(currentDirectory)\\vsts-variable-set.v3.ps1",
+      "argumentFormat": ""
     }
   }
 }
