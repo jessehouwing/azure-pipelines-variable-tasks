@@ -143,7 +143,7 @@ function searchAndReplace(value: string): string {
     const replacement = tl.getInput("replacementValue") || "";
 
     if (method === "basic") {
-        return value.replace(search, replacement);
+        return value.split(search).join(replacement);
     } else {
         const regexOptions = tl.getInput("regexOptions", false);
         let searchExpression: RegExp;
