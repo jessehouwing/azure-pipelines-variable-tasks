@@ -1,4 +1,4 @@
-﻿import tl = require("vsts-task-lib/task");
+﻿import * as tl from "azure-pipelines-task-lib/task";
 
 const variable = tl.getInput("VariableName", true);
 const value = tl.getInput("Value");

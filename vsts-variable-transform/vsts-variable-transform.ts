@@ -1,4 +1,4 @@
-﻿import tl = require("vsts-task-lib/task");
+﻿import * as tl from "azure-pipelines-task-lib/task";
 import "core-js";
 
 const transformAction = tl.getInput("transformAction", true);
