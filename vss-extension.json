@@ -12,9 +12,9 @@
   "scope": [
     "vso.build"
   ],
-  "description": "Build and Release Management tasks for setting and expanding variables.",
+  "description": "Azure Pipelines tasks for setting and expanding variables.",
   "categories": [
-    "Build and release"
+    "Azure Pipelines"
   ],
   "tags": [
     "Extension",

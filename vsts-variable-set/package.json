@@ -7,7 +7,7 @@
     "email": "jesse.houwing@gmail.com"
   },
   "dependencies": {
-    "vsts-task-lib": "^2.1.0"
+    "azure-pipelines-task-lib": "^2.7.7"
   },
   "scripts": {
     "initdev:npm": "npm install",
@@ -17,7 +17,9 @@
   "devDependencies": {
     "@types/node": "^6.0.56",
     "@types/q": "0.0.32",
+    "tslint": "^5.11.0",
     "types": "^0.1.1",
-    "typescript": "^2.1.4"
+    "typescript": "^3.2.1",
+    "typestrict": "^1.0.1"
   }
 }
