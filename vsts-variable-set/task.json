@@ -34,6 +34,14 @@
             "name": "Value",
             "required": false,
             "type": "string"
+        },
+        {
+          "defaultValue": false,
+          "helpMarkdown": "Save variable as a secret.",
+          "label": "Is Secret",
+          "name": "IsSecret",
+          "required": true,
+          "type": "boolean"
         }
     ],
     "instanceNameFormat": "Set variable: $(VariableName) to: '$(Value)'",

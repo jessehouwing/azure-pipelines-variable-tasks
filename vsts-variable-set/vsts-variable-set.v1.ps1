@@ -5,6 +5,8 @@ param(
     $VariableName,
     [Parameter(Mandatory=$false)]
     $Value = ""
+    [Parameter(Mandatory=$false)]
+    $IsSecret = $false
 )
 
 Write-Verbose "Entering script $($MyInvocation.MyCommand.Name)"
@@ -19,7 +21,7 @@ if ($VariableName -eq "Build.BuildNumber")
 }
 else
 {
-    Write-Host "##vso[task.setvariable variable=$($VariableName);]$Value"
+    Write-Host "##vso[task.setvariable variable=$($VariableName);issecret=$($IsSecret)]$Value"
 }
 
 Write-Host "##vso[task.complete result=Succeeded;]DONE"

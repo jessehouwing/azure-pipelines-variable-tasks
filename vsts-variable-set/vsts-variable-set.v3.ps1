@@ -3,6 +3,7 @@ Write-Verbose "Parameter Values"
 
 $VariableName = Get-VstsInput -name "VariableName"
 $Value = Get-VstsInput -name "Value" -default ""
+$IsSecret = Get-VstsInput -name "IsSecret" -default $false -AsBool
 
 Write-Output "Setting '$VariableName' to '$Value'."
 
@@ -12,7 +13,7 @@ if ($VariableName -eq "Build.BuildNumber")
 }
 else
 {
-	Set-VstsTaskVariable -name $VariableName -value $Value
+	Set-VstsTaskVariable -name $VariableName -value $Value -Secret $IsSecret
 }
 
 Write-VstsSetResult -Result "Succeeded" -message "DONE"

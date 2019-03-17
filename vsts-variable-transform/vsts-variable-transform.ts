@@ -3,6 +3,7 @@ import "core-js";
 
 const transformAction = tl.getInput("transformAction", true);
 let value = tl.getInput("value") || "";
+const isSecret = tl.getBoolInput("isSecret") || false;
 
 if (transformAction !== "none") {
     tl.debug("Transformation selected.");
@@ -40,7 +41,7 @@ if (variable.search(/^Build[._]BuildNumber$/i) >= 0) {
     console.log(`Set buildnumber to: ${value}`);
     tl.setResult(tl.TaskResult.Succeeded, `Set buildnumber to: ${value}`);
 } else {
-    tl.setVariable(variable, value);
+    tl.setVariable(variable, value, isSecret);
     console.log(`Set ${variable} to: ${value}`);
     tl.setResult(tl.TaskResult.Succeeded, `Set ${variable} to: ${value}`);
 }

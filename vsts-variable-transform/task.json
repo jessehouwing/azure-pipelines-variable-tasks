@@ -27,7 +27,6 @@
       "displayName": "Transformation",
       "isExpanded": true
     }
-
   ],
   "inputs": [
     {
@@ -45,6 +44,14 @@
       "name": "variableName",
       "required": true,
       "type": "string"
+    },
+    {
+      "defaultValue": false,
+      "helpMarkdown": "Save variable as a secret.",
+      "label": "Is Secret",
+      "name": "IsSecret",
+      "required": true,
+      "type": "boolean"
     },
 
     {
