@@ -42,21 +42,30 @@
       "path": "readme.md"
     },
     "license": {
-      "path": "license.txt"
+      "path": "LICENSE.md"
+    },
+    "privacy": {
+      "path": "PRIVACY.md"
     }
   },
   "links": {
     "getstarted": {
-      "uri": "https://github.com/jessehouwing/vsts-tfvc-tasks/wiki"
+      "uri": "https://github.com/jessehouwing/azure-pipelines-variable-tasks/wiki"
     },
     "support": {
-      "uri": "https://github.com/jessehouwing/vsts-tfvc-tasks/issues"
+      "uri": "https://github.com/jessehouwing/azure-pipelines-variable-tasksissues"
+    },
+    "license": {
+      "uri": "https://github.com/jessehouwing/azure-pipelines-variable-tasks/LICENSE.md"
+    },
+    "privacypolicy": {
+      "uri": "https://github.com/jessehouwing/azure-pipelines-variable-tasks/blob/master/PRIVACY.md"
     }
   },
   "badges": [
     {
       "href": "https://paypal.me/jessehouwing/5",
-      "uri": "https://raw.githubusercontent.com/jessehouwing/vsts-variable-tasks/master/extension/images/donate.png",
+      "uri": "https://raw.githubusercontent.com/jessehouwing/azure-pipelines-variable-tasks/master/extension/images/donate.png",
       "description": "Donate"
     },
     {
@@ -72,7 +81,7 @@
   ],
   "repository": {
     "type": "git",
-    "uri": "https://github.com/jessehouwing/vsts-variable-tasks"
+    "uri": "https://github.com/jessehouwing/azure-pipelines-variable-tasks"
   },
   "branding": {
     "color": "rgb(36, 43, 50)",

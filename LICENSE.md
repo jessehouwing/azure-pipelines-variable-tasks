@@ -1,5 +1,5 @@
-The MIT License (MIT)
-Copyright (c) 2016 Jesse Houwing
+# The MIT License (MIT)
+## Copyright (c) 2016-2019 Jesse Houwing
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -21,8 +21,8 @@ SOFTWARE.
 
 Third Party software
 
-This Visual Studio Team Services extension depends on:
+This Azure Pipelines extension depends on:
 
-* vsts-task-lib 0.5.11 copyright Microsoft licensed under MIT
+* azure-pipelines-task-lib copyright Microsoft licensed under MIT
 * adaptions based on stripslashes copyright Locutus licensed under MIT
 * adaptions based on addslashes copyright Locutus licensed under MIT
