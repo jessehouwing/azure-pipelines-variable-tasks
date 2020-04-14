@@ -15,11 +15,11 @@
     "build": "tsc && npm dedupe && npm prune --production"
   },
   "devDependencies": {
-    "@types/node": "^6.0.56",
+    "@types/node": "^6.14.10",
     "@types/q": "0.0.32",
-    "tslint": "^5.14.0",
+    "tslint": "^5.20.1",
     "types": "^0.1.1",
-    "typescript": "^3.3.3333",
+    "typescript": "^3.8.3",
     "typestrict": "^1.0.2"
   }
 }
