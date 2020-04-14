@@ -4,6 +4,7 @@ import "core-js";
 const transformAction = tl.getInput("transformAction", true);
 let value = tl.getInput("value") || "";
 const isSecret = tl.getBoolInput("isSecret") || false;
+const useTaskLib = tl.getBoolInput("useTasklib") || false;
 
 if (transformAction !== "none") {
     tl.debug("Transformation selected.");
@@ -37,12 +38,21 @@ if (transformAction !== "none") {
 const variable = tl.getInput("variableName", true);
 
 if (variable.search(/^Build[._]BuildNumber$/i) >= 0) {
-    tl.command("build.updatebuildnumber", null, value);
+    if (useTaskLib) {
+        tl.command("build.updatebuildnumber", null, value);
+    } else {
+        console.log(`##vso[build.updatebuildnumber]${value}`);
+    }
+
     console.log(`Set buildnumber to: ${value}`);
     tl.setResult(tl.TaskResult.Succeeded, `Set buildnumber to: ${value}`);
 } else {
-    //tl.setVariable(variable, value, isSecret);
-    console.log(`##vso[task.setvariable variable=testvar;isSecret=;${ isSecret ? 'true' : 'false' }]${value}`);
+    if (useTaskLib) {
+        tl.setVariable(variable, value, isSecret);
+    } else {
+        console.log(`##vso[task.setvariable variable=testvar;isSecret=;${ isSecret ? 'true' : 'false' }]${value}`);
+    }
+
     console.log(`Set ${variable} to: ${value}`);
     tl.setResult(tl.TaskResult.Succeeded, `Set ${variable} to: ${value}`);
 }

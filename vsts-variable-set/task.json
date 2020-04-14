@@ -17,6 +17,11 @@
     ],
     "minimumAgentVersion": "1.83.0",
     "groups": [
+      {
+        "name": "Advanced",
+        "displayName": "Advanced",
+        "isExpanded": false
+      }
     ],
     "inputs": [
         {
@@ -42,6 +47,15 @@
           "name": "IsSecret",
           "required": true,
           "type": "boolean"
+        },
+        {
+          "defaultValue": false,
+          "helpMarkdown": "Use tasklib to set value. (Escapes `\\r`, `\\n` and `%`)",
+          "label": "Use tasklib",
+          "name": "useTasklib",
+          "default": "false",
+          "type": "boolean",
+          "groupName": "Advanced"
         }
     ],
     "instanceNameFormat": "Set variable: $(VariableName) to: '$(Value)'",
