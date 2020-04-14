@@ -26,6 +26,11 @@
       "name": "Transformation",
       "displayName": "Transformation",
       "isExpanded": true
+    },
+    {
+      "name": "Advanced",
+      "displayName": "Advanced",
+      "isExpanded": false
     }
   ],
   "inputs": [
@@ -287,6 +292,16 @@
       "helpMarkDown": "Pad the value to the specified length is reached. If the value is already the same length or longer, the value will not be changed.",
       "groupName": "Manipulation",
       "visibleRule": "pad=true"
+    },
+
+    {
+      "defaultValue": false,
+      "helpMarkdown": "Use tasklib to set value. (Escapes `\\r`, `\\n` and `%`)",
+      "label": "Use tasklib",
+      "name": "useTasklib",
+      "default": "false",
+      "type": "boolean",
+      "groupName": "Advanced"
     }
   ],
   "instanceNameFormat": "Transform value '$(value)' and assign to variable: $(variableName)",
