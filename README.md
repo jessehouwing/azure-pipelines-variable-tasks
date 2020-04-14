@@ -1,4 +1,8 @@
 # Release Notes
+> **15-04-2020**
+> - Fixed: [#48 Update to latest task-lib contains a breaking change](https://github.com/jessehouwing/azure-pipelines-variable-tasks/issues/48)
+> - Updated: moved to latest Task SDK and dependencies
+
 > **23-01-2018**
 > - Changed: Re-implemented Variable-Set in v3 PowerShell handler for better performance.
 > - Fixed: Pad-left and Pad-right now uses core-js library.
