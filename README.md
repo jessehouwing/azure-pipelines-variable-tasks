@@ -1,6 +1,7 @@
 # Release Notes
 > **15-04-2020**
 > - Fixed: [#48 Update to latest task-lib contains a breaking change](https://github.com/jessehouwing/azure-pipelines-variable-tasks/issues/48)
+> - Added: "Use Tasklib" option under Advanced section to control escape behavior introduced in [recent tasklib](https://github.com/microsoft/azure-pipelines-task-lib/commits/master/node/taskcommand.ts)
 > - Updated: moved to latest Task SDK and dependencies
 
 > **23-01-2018**
