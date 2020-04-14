@@ -9,7 +9,8 @@ if (variable.search(/^Build[._]BuildNumber$/i) >= 0) {
     console.log(`Set buildnumber to: ${value}`);
     tl.setResult(tl.TaskResult.Succeeded, `Set buildnumber to: ${value}`);
 } else {
-    tl.setVariable(variable, value, isSecret);
+    //tl.setVariable(variable, value, isSecret);
+    console.log(`##vso[task.setvariable variable=testvar;isSecret=;${ isSecret ? 'true' : 'false' }]${value}`);
     console.log(`Set ${variable} to: ${value}`);
     tl.setResult(tl.TaskResult.Succeeded, `Set ${variable} to: ${value}`);
 }
