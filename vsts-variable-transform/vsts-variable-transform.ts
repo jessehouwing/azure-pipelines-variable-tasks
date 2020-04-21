@@ -50,11 +50,12 @@ if (variable.search(/^Build[._]BuildNumber$/i) >= 0) {
     if (useTaskLib) {
         tl.setVariable(variable, value, isSecret);
     } else {
-        console.log(`##vso[task.setvariable variable=${variable};isSecret=;${ isSecret ? 'true' : 'false' }]${value}`);
+        console.log(`##vso[task.setvariable variable=${variable};isSecret=${ isSecret ? 'true' : 'false' };]${value}`);
     }
 
-    console.log(`Set ${variable} to: ${value}`);
-    tl.setResult(tl.TaskResult.Succeeded, `Set ${variable} to: ${value}`);
+    const newValue=tl.getVariable(variable);
+    console.log(`Set ${variable} to: ${newValue}`);
+    tl.setResult(tl.TaskResult.Succeeded, `Set ${variable} to: ${newValue}`);
 }
 
 function applyManipulations(value: string): string {
