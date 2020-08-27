@@ -59,13 +59,13 @@
       "uri": "https://github.com/jessehouwing/azure-pipelines-variable-tasks/LICENSE.md"
     },
     "privacypolicy": {
-      "uri": "https://github.com/jessehouwing/azure-pipelines-variable-tasks/blob/master/PRIVACY.md"
+      "uri": "https://github.com/jessehouwing/azure-pipelines-variable-tasks/blob/main/PRIVACY.md"
     }
   },
   "badges": [
     {
       "href": "https://paypal.me/jessehouwing/5",
-      "uri": "https://raw.githubusercontent.com/jessehouwing/azure-pipelines-variable-tasks/master/extension/images/donate.png",
+      "uri": "https://raw.githubusercontent.com/jessehouwing/azure-pipelines-variable-tasks/main/extension/images/donate.png",
       "description": "Donate"
     },
     {
