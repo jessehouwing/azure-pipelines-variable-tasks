@@ -7,7 +7,7 @@
     "email": "jesse.houwing@gmail.com"
   },
   "dependencies": {
-    "azure-pipelines-task-lib": "^2.9.3",
+    "azure-pipelines-task-lib": "^2.11.3",
     "core-js": "^2.6.11"
   },
   "scripts": {
