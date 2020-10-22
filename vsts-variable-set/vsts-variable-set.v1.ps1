@@ -19,6 +19,10 @@ if ($VariableName -eq "Build.BuildNumber")
 {
     Write-Host "##vso[build.updatebuildnumber]$Value"
 }
+else if ($VariableName -eq "Release.Releasename") 
+{
+    Write-Host "##vso[release.updatereleasename]$Value"
+}
 else
 {
     Write-Host "##vso[task.setvariable variable=$($VariableName);issecret=$($IsSecret)]$Value"

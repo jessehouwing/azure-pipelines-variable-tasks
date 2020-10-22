@@ -11,6 +11,10 @@ if ($VariableName -eq "Build.BuildNumber")
 {
 	Write-VstsUpdateBuildNumber -value $Value
 }
+else if ($VariableName -eq "Release.Releasename")
+{
+	Write-VstsUpdateReleaseName -value $Value
+}
 else
 {
 	Set-VstsTaskVariable -name $VariableName -value $Value -Secret $IsSecret
