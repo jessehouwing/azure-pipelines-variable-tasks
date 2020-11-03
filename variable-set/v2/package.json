@@ -16,10 +16,6 @@
   },
   "devDependencies": {
     "@types/node": "^6.14.10",
-    "@types/q": "0.0.32",
-    "tslint": "^5.20.1",
-    "types": "^0.1.1",
-    "typescript": "^3.8.3",
-    "typestrict": "^1.0.2"
+    "@types/q": "0.0.32"
   }
 }
