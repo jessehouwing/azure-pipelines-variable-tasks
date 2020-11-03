@@ -24,9 +24,12 @@ stages:
 
     - script: |
         npm install
+
+    - script: |
         npm run initdev
+    
+    - script: |
         npm run build
-      displayName: 'Build the extension'
 
     - task: SnykSecurityScan@0
       inputs:
