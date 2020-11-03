@@ -65,7 +65,7 @@
       "name": "useSetVariableForReleaseName",
       "type": "boolean",
       "required": false,
-      "visibleRule": "variableName=release.releasename || variableName=release_releasename"
+      "visibleRule": "variableName='release.releasename' || variableName='release_releasename'"
     },
     {
       "defaultValue": false,
@@ -74,7 +74,7 @@
       "name": "IsSecret",
       "required": false,
       "type": "boolean",
-      "visibleRule": "variableName!=release.releasename && variableName!=release_releasename && variableName!=build.buildnumber && variableName!=build_buildnumber"
+      "visibleRule": "variableName!='release.releasename' && variableName!='release_releasename' && variableName!='build.buildnumber' && variableName!='build_buildnumber'"
     },
     {
       "defaultValue": false,
@@ -83,7 +83,7 @@
       "name": "IsOutput",
       "required": false,
       "type": "boolean",
-      "visibleRule": "variableName!=release.releasename && variableName!=release_releasename && variableName!=build.buildnumber && variableName!=build_buildnumber"
+      "visibleRule": "variableName!='release.releasename' && variableName!='release_releasename' && variableName!='build.buildnumber' && variableName!='build_buildnumber'"
     },
     {
       "name": "transformAction",
