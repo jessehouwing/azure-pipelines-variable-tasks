@@ -47,7 +47,7 @@
       "name": "useSetVariableForReleaseName",
       "type": "boolean",
       "required": false,
-      "visibleRule": "variableName='release.releasename' || variableName='release_releasename'"
+      "visibleRule": "variableName=release.releasename"
     },
     {
       "defaultValue": "",
@@ -64,7 +64,7 @@
       "name": "IsSecret",
       "required": false,
       "type": "boolean",
-      "visibleRule": "variableName!='release.releasename' && variableName!='release_releasename' && variableName!='build.buildnumber' && variableName!='build_buildnumber'"
+      "visibleRule": "variableName!=release.releasename && variableName!=build.buildnumber"
     },
     {
       "defaultValue": false,
@@ -73,7 +73,7 @@
       "name": "IsOutput",
       "required": false,
       "type": "boolean",
-      "visibleRule": "variableName != release.releasename && variableName != release_releasename && variableName != build.buildnumber && variableName != build_buildnumber"
+      "visibleRule": "variableName!=release.releasename && variableName!=build.buildnumber"
     },
     {
       "defaultValue": true,
