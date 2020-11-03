@@ -7,7 +7,7 @@ pr:
 - main
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-latest'
   demands: npm
 
 stages:
@@ -15,7 +15,7 @@ stages:
   displayName: 'Build'
   jobs:
   - job: 
-    displayName: 'Build on Windows'
+    displayName: 'Build'
     steps:
     - task: NodeTool@0
       inputs:
