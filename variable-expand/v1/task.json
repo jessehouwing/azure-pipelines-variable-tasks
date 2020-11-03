@@ -1,0 +1,48 @@
+{
+  "id": "5f8f1adf-42bd-442d-8a0f-ae009a66b99e",
+  "name": "VariableExpandTask",
+  "friendlyName": "Expand Variable [DEPRECATED] #{Extension.Tag}#",
+  "deprecated": true,
+  "description": "Expands a variable on agent version 1.x.",
+  "helpMarkDown": "Version: #{Build.BuildNumber}#. [More Information](https://github.com/jessehouwing/azure-pipelines-variable-tasks/wiki)",
+  "category": "Utility",
+  "author": "Jesse Houwing",
+  "version": {
+    "Major": 1,
+    "Minor": 4,
+    "Patch": 0
+  },
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "minimumAgentVersion": "1.83.0",
+  "groups": [
+
+  ],
+  "inputs": [
+    {
+      "defaultValue": "*",
+      "helpMarkdown": "List of variables to expand separated by `,`, `;` or newline. Only supply the variable name and do not include `$(...)`. To expand all variables, enter `*`.",
+      "label": "Variables",
+      "name": "VariableNames",
+      "required": true,
+      "type": "multiLine"
+    }
+  ],
+  "instanceNameFormat": "Expand variables: '$(VariableNames)' on agent version 1.x",
+  "execution": {
+    "PowerShell": {
+      "target": "$(currentDirectory)\\vsts-variable-expand.v1.ps1",
+      "argumentFormat": "",
+      "workingDirectory": "$(currentDirectory)",
+      "platforms": [
+        "windows"
+      ]
+    },
+    "PowerShell3": {
+      "target": "$(currentDirectory)\\vsts-variable-expand.v3.ps1",
+      "argumentFormat": ""
+    }
+  }
+}

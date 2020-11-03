@@ -1,0 +1,314 @@
+{
+  "id": "9ccfb3bb-7ec0-4626-8599-164b1f95f933",
+  "name": "VariableTransformTask",
+  "friendlyName": "Transform value #{Extension.Tag}#",
+  "description": "Transform value and assign to variable.",
+  "helpMarkDown": "Version: #{Build.BuildNumber}#. [More Information](https://github.com/jessehouwing/azure-pipelines-variable-tasks/wiki)",
+  "category": "Utility",
+  "author": "Jesse Houwing",
+  "version": {
+    "Major": 1,
+    "Minor": 4,
+    "Patch": 0
+  },
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "minimumAgentVersion": "1.83.0",
+  "groups": [
+    {
+      "name": "Manipulation",
+      "displayName": "Manipulation (executed in displayed order)",
+      "isExpanded": true
+    },
+    {
+      "name": "Transformation",
+      "displayName": "Transformation",
+      "isExpanded": true
+    },
+    {
+      "name": "Advanced",
+      "displayName": "Advanced",
+      "isExpanded": false
+    }
+  ],
+  "inputs": [
+    {
+      "defaultValue": "",
+      "helpMarkdown": "Input value. You can use other variables as input as with any other text input using the `$(...)` notation anywhere in the value.",
+      "label": "Input Value",
+      "name": "value",
+      "required": false,
+      "type": "string"
+    },
+    {
+      "defaultValue": "",
+      "helpMarkdown": "Variable to set. Only supply the variable name and do not include `$(...)`.",
+      "label": "Output Variable",
+      "name": "variableName",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "defaultValue": false,
+      "helpMarkdown": "Save variable as a secret.",
+      "label": "Is Secret",
+      "name": "IsSecret",
+      "required": true,
+      "type": "boolean"
+    },
+
+    {
+      "name": "transformAction",
+      "type": "pickList",
+      "label": "Action",
+      "required": true,
+      "helpMarkDown": "Optionally transform/escape the value. Pick from base64, uri, uri component or slashes.",
+      "defaultValue": "none",
+      "options": {
+        "none": "None",
+        "base64": "Base 64",
+        "uri": "Uri",
+        "uriComponent": "Uri Component",
+        "slashes": "Slashes"
+      },
+      "groupName": "Transformation"
+    },
+
+    {
+      "name": "encodeOrDecode",
+      "type": "radio",
+      "label": "Direction",
+      "required": true,
+      "helpMarkDown": "Pick between encode or decode using the selcted action.",
+      "options": {
+        "encodeString": "Encode",
+        "decodeString": "Decode"
+      },
+      "groupName": "Transformation",
+      "defaultValue":  "encodeString",
+      "visibleRule": "transformAction != none"
+    },
+    {
+      "name": "pointInTime",
+      "type": "radio",
+      "label": "Apply Transformation",
+      "required": true,
+      "helpMarkDown": "Apply the selected transformation before or after the basic string manipulations. Generally you'd use before when encoding and after when decoding.",
+      "options": {
+        "beforeManipulation": "Before",
+        "afterManipulation": "After manipulation"
+      },
+      "defaultValue": "afterManipulation",
+      "visibleRule": "transformAction != none",
+      "groupName": "Transformation"
+    },
+
+
+    {
+      "name": "searchReplace",
+      "type": "boolean",
+      "label": "Search and Replace",
+      "helpMarkDown": "Search and replace values.",
+      "groupName": "Manipulation"
+    },
+    {
+      "name": "searchReplaceMethod",
+      "type": "pickList",
+      "label": "Method",
+      "required": true,
+      "defaultValue": "basic",
+      "helpMarkDown": "Choose from basic (exact match), regex replace or regex match (to extract a value).",
+      "options": {
+        "basic": "Basic",
+        "regex": "Regex Replace",
+        "match": "Regex Match"
+      },
+      "groupName": "Manipulation",
+      "visibleRule": "searchReplace=true"
+    },
+
+    {
+      "name": "searchValue",
+      "type": "multiLine",
+      "label": "Search",
+      "helpMarkDown": "Value or Expression to search. If you selected Regex Replace or Regex Match, you can use the Javascript regex syntax. See also: (Ecmascript reference)[http://www.ecma-international.org/ecma-262/5.1/#sec-15.10].",
+      "groupName": "Manipulation",
+      "visibleRule": "searchReplace=true"
+    },
+
+    {
+      "name": "replacementValue",
+      "type": "multiLine",
+      "label": "Replacement",
+      "helpMarkDown": "Replacement value. Use `$1` to use the value of a capturing group. See also: (Ecmascript reference)[http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.11].",
+      "groupName": "Manipulation",
+      "visibleRule": "searchReplace=true && searchReplaceMethod!=match"
+    },
+
+    {
+      "name": "regexOptions",
+      "type": "string",
+      "label": "Regex Options",
+      "helpMarkDown": "Specifies the regex options. Use `gim`, `g` - global replace, `i` - case insensitive, `m` - multiline (dot matches newline). See also: (Ecmascript reference)[http://www.ecma-international.org/ecma-262/5.1/#sec-15.10.4.1].",
+      "groupName": "Manipulation",
+      "visibleRule": "searchReplace=true && searchReplaceMethod!=basic"
+    },
+
+
+
+
+
+
+    {
+      "name": "trim",
+      "type": "boolean",
+      "label": "Trim",
+      "helpMarkDown": "Trims all whitespace around the value.",
+      "groupName": "Manipulation"
+    },
+
+    {
+      "name": "slice",
+      "type": "boolean",
+      "label": "Slice",
+      "helpMarkDown": "Allows you to select a part of the value.",
+      "groupName": "Manipulation"
+    },
+    {
+      "name": "sliceLeft",
+      "type": "string",
+      "required": true,
+      "label": "Left",
+      "helpMarkDown": "Number of characters to remove from the start of the value.",
+      "groupName": "Manipulation",
+      "visibleRule": "slice=true"
+    },
+    {
+      "name": "sliceRight",
+      "type": "string",
+      "required": true,
+      "label": "Right",
+      "helpMarkDown": "Number of characters to remove from the end of the value. (use negative notation, e.g. `-1`).",
+      "groupName": "Manipulation",
+      "visibleRule": "slice=true"
+    },
+
+    {
+      "name": "substring",
+      "label": "Substring",
+      "type": "boolean",
+      "helpMarkDown": "Allows you to select a part of the value.",
+      "groupName": "Manipulation"
+    },
+    {
+      "name": "substringType",
+      "type": "radio",
+      "label": "Type",
+      "helpMarkDown": "Select the type of method to use to take the part of value.",
+      "groupName": "Manipulation",
+      "default": "substring",
+      "options": {
+        "substring": "Substring",
+        "left": "Left",
+        "right": "Right"
+      },
+      "visibleRule": "substring=true"
+    },
+    {
+      "name": "substringStart",
+      "type": "string",
+      "required": true,
+      "label": "Start",
+      "helpMarkDown": "Start the substring at the index specified.",
+      "groupName": "Manipulation",
+      "visibleRule": "substring=true && substringType=substring"
+    },
+    {
+      "name": "substringLength",
+      "type": "string",
+      "required": false,
+      "label": "Length",
+      "helpMarkDown": "Take this number of characters from the specified index (substring), beginning of the string (left) or end of the string (right).",
+      "groupName": "Manipulation",
+      "visibleRule": "substring=true"
+    },
+
+    {
+      "name": "casing",
+      "type": "boolean",
+      "label": "Change Case",
+      "helpMarkDown": "Change the case of the value (always uses Invariant).",
+      "groupName": "Manipulation"
+    },
+    {
+      "name": "casingType",
+      "type": "radio",
+      "label": "Type",
+      "helpMarkDown": "Choose either upper or lowercase.",
+      "groupName": "Manipulation",
+      "options": {
+        "toUpper": "Upper",
+        "toLower": "Lower Case"
+      },
+      "visibleRule": "casing=true"
+    },
+
+    {
+      "name": "pad",
+      "type": "boolean",
+      "label": "Pad",
+      "helpMarkDown": "Pad the value",
+      "groupName": "Manipulation"
+    },
+    {
+      "name": "padType",
+      "type": "radio",
+      "label": "Type",
+      "required": true,
+      "helpMarkDown": "Pads either left or right side of the value.",
+      "defaultValue": "left",
+      "groupName": "Manipulation",
+      "options": {
+        "left": "Left",
+        "right": "Right"
+      },
+      "visibleRule": "pad=true"
+    },
+    {
+      "name": "padChar",
+      "type": "string",
+      "label": "Character",
+      "helpMarkDown": "Use this single character as padding. If none is specified, space ' ' is used.",
+      "groupName": "Manipulation",
+      "visibleRule": "pad=true"
+    },
+    {
+      "name": "padLength",
+      "type": "string",
+      "required": true,
+      "label": "Length",
+      "helpMarkDown": "Pad the value to the specified length is reached. If the value is already the same length or longer, the value will not be changed.",
+      "groupName": "Manipulation",
+      "visibleRule": "pad=true"
+    },
+
+    {
+      "defaultValue": false,
+      "helpMarkdown": "Use tasklib to set value. (Escapes `\\r`, `\\n` and `%`)",
+      "label": "Use tasklib",
+      "name": "useTasklib",
+      "default": "false",
+      "type": "boolean",
+      "groupName": "Advanced"
+    }
+  ],
+  "instanceNameFormat": "Transform value '$(value)' and assign to variable: $(variableName)",
+  "execution": {
+    "Node": {
+      "target": "vsts-variable-transform.js",
+      "argumentFormat": ""
+    }
+  }
+}

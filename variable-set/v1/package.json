@@ -1,0 +1,25 @@
+{
+  "name": "vsts-variable-set",
+  "version": "0.0.0",
+  "description": "Set Variable",
+  "author": {
+    "name": "Jesse Houwing",
+    "email": "jesse.houwing@gmail.com"
+  },
+  "dependencies": {
+    "azure-pipelines-task-lib": "^2.9.3"
+  },
+  "scripts": {
+    "initdev:npm": "npm install",
+    "initdev": "npm run initdev:npm",
+    "build": "tsc && npm dedupe && npm prune --production"
+  },
+  "devDependencies": {
+    "@types/node": "^6.14.10",
+    "@types/q": "0.0.32",
+    "tslint": "^5.20.1",
+    "types": "^0.1.1",
+    "typescript": "^3.8.3",
+    "typestrict": "^1.0.2"
+  }
+}
