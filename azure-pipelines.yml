@@ -25,14 +25,8 @@ stages:
     - script: |
         npm install
         npm run initdev
-      displayName: 'Install Node dependencies'
-
-    - task: Npm@1
+        npm run build
       displayName: 'Build the extension'
-      inputs:
-        command: custom
-        verbose: false
-        customCommand: 'run build'
 
     - task: SnykSecurityScan@0
       inputs:
