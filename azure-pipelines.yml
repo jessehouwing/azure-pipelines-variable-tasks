@@ -2,6 +2,7 @@ name: '2.0$(rev:.r)'
 
 trigger:
 - main
+- features/*
 
 pr:
 - main
@@ -71,7 +72,7 @@ stages:
 
 - stage: PublishDev
   displayName: 'Publish privately'
-  condition: ne(variables['Build.Reason'], 'PullRequest')
+  condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
   dependsOn: 'Build'
   jobs:
     - deployment: 
@@ -120,6 +121,7 @@ stages:
 
 - stage: PublishProd
   displayName: 'Publish publicly'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
   dependsOn: 'PublishDev'
   jobs:
     - deployment: 
