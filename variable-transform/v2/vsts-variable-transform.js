@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const tl = require("azure-pipelines-task-lib/task");
 require("core-js");
-const transformAction = tl.getInput("transformAction", true);
+const transformAction = tl.getInput("transformAction", false) || "none";
 let value = tl.getInput("value") || "";
 const isSecret = tl.getBoolInput("isSecret") || false;
 const useTaskLib = tl.getBoolInput("useTasklib") || false;
