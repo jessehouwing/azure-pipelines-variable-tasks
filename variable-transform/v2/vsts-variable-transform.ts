@@ -1,7 +1,7 @@
 ﻿import * as tl from "azure-pipelines-task-lib/task";
 import "core-js";
 
-const transformAction = tl.getInput("transformAction", true);
+const transformAction = tl.getInput("transformAction", false) || "none";
 let value = tl.getInput("value") || "";
 const isSecret = tl.getBoolInput("isSecret") || false;
 const useTaskLib = tl.getBoolInput("useTasklib") || false;
