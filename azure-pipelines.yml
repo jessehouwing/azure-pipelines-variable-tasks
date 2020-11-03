@@ -111,11 +111,11 @@ stages:
             condition: succeededOrFailed()
 
 - stage: PublishProd
-  displayName: 'Publish publicly to MsDevLabs'
+  displayName: 'Publish publicly'
   dependsOn: 'PublishDev'
   jobs:
     - deployment: 
-      environment: Publisher MsDevLabs (publicly)
+      environment: Publisher JesseHouwing (publicly)
       strategy: 
         runOnce:
          deploy:
