@@ -18,11 +18,12 @@
     "initdev:npm:tasks": "glob-exec --parallel --foreach \"variable-*/*/tsconfig.json\" -- \"cd {{file.dir}} && npm install --no-update-notifier --no-progress\"",
     "compile:tasks": "glob-exec \"variable-*/*/tsconfig.json\" -- \"tsc -b {{files.join(' ')}}\"",
     "postcompile:tasks": "npm run lint:tasks",
+    "cleanup:tasks": "glob-exec --parallel --foreach \"variable-*/*/tsconfig.json\" -- \"cd {{file.dir}} && npm dedupe && npm prune --production\"",
     "lint:tasks": "glob-exec --parallel --foreach \"variable-*/*/tsconfig.json\" -- \"eslint {{file.dir}} --parser-options \"{'project':['{{file}}','variable-*/tsconfig.json']}\"",
     "package:tasks": "tfx extension create --root . --output-path dist --manifest-globs vss-extension.json",
     "build": "npm run build:tasks",
     "build:clean": "npm run clean && npm run initdev && npm run build",
-    "build:tasks": "npm run compile:tasks",
+    "build:tasks": "npm run compile:tasks && npm run cleanup:tasks",
     "package": "npm run build:clean && npm run package:tasks",
     "clean": "git clean -fdX"
   },
