@@ -101,6 +101,14 @@ stages:
               extensionVisibility: 'privatepreview'
               shareWith: 'jessehouwing-dev'
               noWaitValidation: true
+        
+          - task: IsAzureDevOpsExtensionValid@3
+            inputs:
+              connectTo: 'VsTeam'
+              connectedServiceName: 'Jesse Houwing'
+              method: 'vsix'
+              vsixFile: '$(publishDev.Extension.OutputPath)'
+
 
           - task: PublishPipelineArtifact@1
             displayName: 'Publish vsix'
@@ -138,7 +146,7 @@ stages:
               extensionId: 'jessehouwing-vsts-variable-tasks'
               updateTasksVersion: false
               extensionVisibility: 'public'
-              noWaitValidation:  true
+              noWaitValidation: true
           
           - task: IsAzureDevOpsExtensionValid@3
             inputs:
