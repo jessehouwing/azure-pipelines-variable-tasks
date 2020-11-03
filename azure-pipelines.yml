@@ -23,6 +23,7 @@ stages:
       displayName: 'Install Node.js'
 
     - script: |
+        npm install
         npm run initdev
       displayName: 'Install Node dependencies'
 
