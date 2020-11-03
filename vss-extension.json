@@ -2,7 +2,7 @@
   "manifestVersion": 1,
   "id": "jessehouwing-vsts-variable-tasks",
   "name": "Variable Toolbox",
-  "version": "0.0.0",
+  "version": "2.0.0",
   "publisher": "jessehouwing",
   "targets": [
     {
@@ -92,85 +92,44 @@
   },
   "files": [
     {
-      "path": "vsts-variable-set/ps_modules/vststasksdk"
+      "path": "variable-set/"
     },
     {
-      "path": "vsts-variable-set/vsts-variable-set.v1.ps1"
+      "path": "variable-expand/"
     },
     {
-      "path": "vsts-variable-set/vsts-variable-set.v3.ps1"
-    },
-    {
-      "path": "vsts-variable-set/vsts-variable-set.js"
-    },
-    {
-      "path": "vsts-variable-set/node_modules"
-    },
-    {
-      "path": "vsts-variable-set/task.json"
-    },
-    {
-      "path": "vsts-variable-set/icon.png"
-    },
-
-    {
-      "path": "vsts-variable-expand/ps_modules/vststasksdk"
-    },
-    {
-      "path": "vsts-variable-expand/vsts-variable-expand.v1.ps1"
-    },
-    {
-      "path": "vsts-variable-expand/vsts-variable-expand.v3.ps1"
-    },
-    {
-      "path": "vsts-variable-expand/task.json"
-    },
-    {
-      "path": "vsts-variable-expand/icon.png"
-    },
-
-    {
-      "path": "vsts-variable-transform/vsts-variable-transform.js"
-    },
-    {
-      "path": "vsts-variable-transform/task.json"
-    },
-    {
-      "path": "vsts-variable-transform/icon.png"
-    },
-    {
-      "path": "vsts-variable-transform/node_modules"
+      "path": "variable-transform/"
     }
   ],
   "contributions": [
     {
-      "id": "vsts-variable-set",
+      "id": "variable-transform",
       "type": "ms.vss-distributed-task.task",
       "targets": [
         "ms.vss-distributed-task.tasks"
       ],
       "properties": {
-        "name": "vsts-variable-set"
+        "name": "variable-transform"
       }
     },
     {
-      "id": "vsts-variable-expand",
+      "id": "variable-expand",
       "type": "ms.vss-distributed-task.task",
       "targets": [
         "ms.vss-distributed-task.tasks"
       ],
       "properties": {
-        "name": "vsts-variable-expand"
+        "name": "variable-expand"
       }
     },
     {
-      "id": "vsts-variable-transform",
+      "id": "variable-set",
       "type": "ms.vss-distributed-task.task",
       "targets": [
         "ms.vss-distributed-task.tasks"
       ],
       "properties": {
-        "name": "vsts-variable-transform"
+        "name": "variable-set"
       }
     }
   ]
