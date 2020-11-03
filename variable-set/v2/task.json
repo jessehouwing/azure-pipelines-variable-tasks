@@ -73,7 +73,7 @@
       "name": "IsOutput",
       "required": false,
       "type": "boolean",
-      "visibleRule": "variableName!='release.releasename' && variableName!='release_releasename' && variableName!='build.buildnumber' && variableName!='build_buildnumber'"
+      "visibleRule": "variableName != release.releasename && variableName != release_releasename && variableName != build.buildnumber && variableName != build_buildnumber"
     },
     {
       "defaultValue": true,
