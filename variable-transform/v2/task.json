@@ -65,7 +65,7 @@
       "name": "useSetVariableForReleaseName",
       "type": "boolean",
       "required": false,
-      "visibleRule": "variableName=release.releasename"
+      "visibleRule": "variableName==release.releasename"
     },
     {
       "defaultValue": false,
