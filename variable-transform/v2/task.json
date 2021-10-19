@@ -1,6 +1,6 @@
 {
   "id": "9ccfb3bb-7ec0-4626-8599-164b1f95f933",
-  "name": "variable-transform",
+  "name": "VariableTransformTask",
   "friendlyName": "Transform value",
   "description": "Transform value and assign to variable.",
   "helpMarkDown": "Version: #{Build.BuildNumber}#. [More Information](https://github.com/jessehouwing/azure-pipelines-variable-tasks/wiki)",
