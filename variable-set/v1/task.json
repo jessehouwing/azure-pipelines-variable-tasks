@@ -30,7 +30,8 @@
       "label": "Variable",
       "name": "VariableName",
       "required": true,
-      "type": "string"
+      "type": "string",
+      "aliases": ["variableName"]
     },
     {
       "defaultValue": "",

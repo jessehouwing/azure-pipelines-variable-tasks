@@ -1,6 +1,6 @@
 {
   "id": "3ca44a28-62de-4c60-8d77-a99065b95a8a",
-  "name": "VariableSetTask",
+  "name": "variable-set",
   "friendlyName": "Set Variable",
   "description": "Sets a variable.",
   "helpMarkDown": "Version: #{Build.BuildNumber}#. [More Information](https://github.com/jessehouwing/azure-pipelines-variable-tasks/wiki)",
@@ -28,7 +28,7 @@
       "defaultValue": "",
       "helpMarkdown": "Variable to set. Only supply the variable name and do not include `$(...)`.",
       "label": "Variable",
-      "name": "variableName",
+      "name": "VariableName",
       "required": true,
       "type": "pickList",
       "options": {
@@ -38,7 +38,8 @@
       },
       "properties": {
         "EditableOptions": "True"
-      }
+      },
+      "aliases": ["variableName"]
     },
     {
       "defaultValue": false,
