@@ -23,6 +23,13 @@ stages:
         versionSpec: '10.x'
       displayName: 'Install Node.js'
 
+    - task: replacetokens@4
+      inputs:
+        targetFiles: '**/task.json'
+        encoding: 'utf-8'
+        tokenPattern: 'default'
+        writeBOM: false
+
     - script: |
         npm install
 
