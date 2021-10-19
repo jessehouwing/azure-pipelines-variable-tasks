@@ -30,11 +30,11 @@ else if (!useSetVariableForReleaseName && variable.search(/^release[._]releasena
 else {
     if (useTaskLib) {
         tl.setVariable(variable, value, isSecret);
+        const newValue = tl.getVariable(variable);
+        console.log(`Set ${variable} to: ${newValue}`);
     }
     else {
-        console.log(`##vso[task.setvariable variable=${variable}${isSecret ? ';isSecret=true' : ''}${isOutput ? ';isOutput=true' : ''};]${value}`);
+        console.log(`##vso[task.setvariable variable=${variable};isSecret=${isSecret ? 'true' : 'false'};isOutput=${isOutput ? 'true' : 'false'};]${value}`);
     }
-    const newValue = tl.getVariable(variable);
-    console.log(`Set ${variable} to: ${newValue}`);
     tl.setResult(tl.TaskResult.Succeeded, `Set ${variable} to: ${value}`);
 }
