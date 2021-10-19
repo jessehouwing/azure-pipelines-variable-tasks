@@ -37,7 +37,6 @@ stages:
         testType: 'app'
         monitorOnBuild: false
         failOnIssues: true
-        projectName: 'azure-pipelines-variable-tasks'
         additionalArguments: '--all-projects --detection-depth=6'
         serviceConnectionEndpoint: 'snyk-jessehouwing'
 
