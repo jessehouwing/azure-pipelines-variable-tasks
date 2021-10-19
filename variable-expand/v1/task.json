@@ -1,7 +1,7 @@
 {
   "id": "5f8f1adf-42bd-442d-8a0f-ae009a66b99e",
   "name": "VariableExpandTask",
-  "friendlyName": "Expand Variable [DEPRECATED] #{Extension.Tag}#",
+  "friendlyName": "Expand Variable [DEPRECATED]",
   "deprecated": true,
   "description": "Expands a variable on agent version 1.x.",
   "helpMarkDown": "Version: #{Build.BuildNumber}#. [More Information](https://github.com/jessehouwing/azure-pipelines-variable-tasks/wiki)",

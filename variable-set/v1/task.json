@@ -1,64 +1,64 @@
 {
-    "id": "3ca44a28-62de-4c60-8d77-a99065b95a8a",
-    "name": "VariableSetTask",
-    "friendlyName": "Set Variable #{Extension.Tag}#",
-    "description": "Sets a variable.",
-    "helpMarkDown": "Version: #{Build.BuildNumber}#. [More Information](https://github.com/jessehouwing/azure-pipelines-variable-tasks/wiki)",
-    "category": "Utility",
-    "author": "Jesse Houwing",
-    "version": {
-        "Major": 1,
-        "Minor": 4,
-        "Patch": 0
+  "id": "3ca44a28-62de-4c60-8d77-a99065b95a8a",
+  "name": "VariableSetTask",
+  "friendlyName": "Set Variable",
+  "description": "Sets a variable.",
+  "helpMarkDown": "Version: #{Build.BuildNumber}#. [More Information](https://github.com/jessehouwing/azure-pipelines-variable-tasks/wiki)",
+  "category": "Utility",
+  "author": "Jesse Houwing",
+  "version": {
+    "Major": 1,
+    "Minor": 4,
+    "Patch": 0
+  },
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "minimumAgentVersion": "1.83.0",
+  "groups": [
+    {
+      "name": "Advanced",
+      "displayName": "Advanced",
+      "isExpanded": false
+    }
+  ],
+  "inputs": [
+    {
+      "defaultValue": "",
+      "helpMarkdown": "Variable to set. Only supply the variable name and do not include `$(...)`.",
+      "label": "Variable",
+      "name": "VariableName",
+      "required": true,
+      "type": "string"
     },
-    "visibility": [
-        "Build",
-        "Release"
-    ],
-    "minimumAgentVersion": "1.83.0",
-    "groups": [
-      {
-        "name": "Advanced",
-        "displayName": "Advanced",
-        "isExpanded": false
-      }
-    ],
-    "inputs": [
-        {
-            "defaultValue": "",
-            "helpMarkdown": "Variable to set. Only supply the variable name and do not include `$(...)`.",
-            "label": "Variable",
-            "name": "VariableName",
-            "required": true,
-            "type": "string"
-        },
-        {
-            "defaultValue": "",
-            "helpMarkdown": "The value to assign to the variable.",
-            "label": "Value",
-            "name": "Value",
-            "required": false,
-            "type": "string"
-        },
-        {
-          "defaultValue": false,
-          "helpMarkdown": "Save variable as a secret.",
-          "label": "Is Secret",
-          "name": "IsSecret",
-          "required": true,
-          "type": "boolean"
-        },
-        {
-          "defaultValue": false,
-          "helpMarkdown": "Use tasklib to set value. (Escapes `\\r`, `\\n` and `%`)",
-          "label": "Use tasklib",
-          "name": "useTasklib",
-          "default": "false",
-          "type": "boolean",
-          "groupName": "Advanced"
-        }
-    ],
-    "instanceNameFormat": "Set variable: $(VariableName) to: '$(Value)'",
+    {
+      "defaultValue": "",
+      "helpMarkdown": "The value to assign to the variable.",
+      "label": "Value",
+      "name": "Value",
+      "required": false,
+      "type": "string"
+    },
+    {
+      "defaultValue": false,
+      "helpMarkdown": "Save variable as a secret.",
+      "label": "Is Secret",
+      "name": "IsSecret",
+      "required": true,
+      "type": "boolean"
+    },
+    {
+      "defaultValue": false,
+      "helpMarkdown": "Use tasklib to set value. (Escapes `\\r`, `\\n` and `%`)",
+      "label": "Use tasklib",
+      "name": "useTasklib",
+      "default": "false",
+      "type": "boolean",
+      "groupName": "Advanced"
+    }
+  ],
+  "instanceNameFormat": "Set variable: $(VariableName) to: '$(Value)'",
   "execution": {
     "Node": {
       "target": "vsts-variable-set.js",

@@ -1,7 +1,7 @@
 {
   "id": "3ca44a28-62de-4c60-8d77-a99065b95a8a",
-  "name": "variable-set",
-  "friendlyName": "Set Variable #{Extension.Tag}#",
+  "name": "VariableSetTask",
+  "friendlyName": "Set Variable",
   "description": "Sets a variable.",
   "helpMarkDown": "Version: #{Build.BuildNumber}#. [More Information](https://github.com/jessehouwing/azure-pipelines-variable-tasks/wiki)",
   "category": "Utility",
