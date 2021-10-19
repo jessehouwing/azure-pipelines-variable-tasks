@@ -103,7 +103,7 @@
   ],
   "contributions": [
     {
-      "id": "variable-transform",
+      "id": "vsts-variable-transform",
       "type": "ms.vss-distributed-task.task",
       "targets": [
         "ms.vss-distributed-task.tasks"
@@ -113,7 +113,7 @@
       }
     },
     {
-      "id": "variable-expand",
+      "id": "vsts-variable-expand",
       "type": "ms.vss-distributed-task.task",
       "targets": [
         "ms.vss-distributed-task.tasks"
@@ -123,7 +123,7 @@
       }
     },
     {
-      "id": "variable-set",
+      "id": "vsts-variable-set",
       "type": "ms.vss-distributed-task.task",
       "targets": [
         "ms.vss-distributed-task.tasks"
