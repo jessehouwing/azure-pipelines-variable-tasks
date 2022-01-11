@@ -67,6 +67,36 @@ stages:
         updateTasksVersion: true
         updateTasksVersionType: patch
         extensionVisibility: private
+    
+    - task: PowerShell@2
+      inputs:
+        targetType: 'inline'
+        script: |
+          md _tmp
+          md _output
+          
+          Expand-Archive -Path $env:vsix -DestinationPath .\_tmp
+          $manifest = gc .\_tmp\extension.vsomanifest | ConvertFrom-Json
+          
+          foreach ($contribution in $manifest.contributions | ?{ $_.type -eq "ms.vss-distributed-task.task"})
+          {
+              $path = join-path -path ".\_tmp\" -childpath $contribution.properties.name
+              $versions = Get-ChildItem -Attributes Directory -Path $path
+              foreach ($version in $versions | %{$_.name})
+              {
+                  $taskpath = join-path -path $path -childpath $version
+                  $taskmanifestPath = (join-path -path $taskpath -childpath "task.json")
+                  $taskManifest = gc $taskmanifestPath | ConvertFrom-Json -AsHashTable
+                  $taskName = $taskManifest.name
+                  $output = join-path -path ".\_output" -childpath "$taskName$($version.ToUpper()).zip"
+          
+                  Compress-Archive -Path $taskpath\* -DestinationPath $output
+              }
+          }
+        pwsh: true
+        workingDirectory: '$(Build.SourcesDirectory)'
+      env:
+        vsix: '$(Build.ArtifactStagingDirectory)\jessehouwing-vsts-variable-tasks.vsix'
 
     - task: PublishPipelineArtifact@1
       displayName: 'Publish vsix'
