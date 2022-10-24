@@ -42,7 +42,7 @@
     "@typescript-eslint/parser": "^3.6.1",
     "eslint": "^7.12.1",
     "eslint-config-airbnb-typescript": "^9.0.0",
-    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-import": "^2.26.0",
     "glob-exec": "^0.1.1",
     "tfx-cli": "^0.12.0",
     "typescript": "^4.8.4"
