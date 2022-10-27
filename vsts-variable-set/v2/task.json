@@ -56,7 +56,8 @@
       "label": "Value",
       "name": "Value",
       "required": false,
-      "type": "string"
+      "type": "string",
+      "aliases": ["value"]
     },
     {
       "defaultValue": false,
