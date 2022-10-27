@@ -15,7 +15,5 @@
     "build": "tsc && npm dedupe && npm prune --production"
   },
   "devDependencies": {
-    "@types/node": "^6.14.10",
-    "@types/q": "0.0.32"
   }
 }
