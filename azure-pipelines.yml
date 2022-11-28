@@ -9,7 +9,17 @@ pr:
 
 pool:
   vmImage: 'windows-latest'
-  demands: npm
+
+variables:
+  - name: 'extensionId'
+    value: 'jessehouwing-vsts-variable-tasks'
+  - name: 'tfxVersion'
+    value: '0.x'
+  - name: 'nodeVersion'
+    value: '10.x'
+  - name: 'publisher'
+    value: 'Marketplace'
+
 
 stages:
 - stage: 'Build'
@@ -20,7 +30,7 @@ stages:
     steps:
     - task: NodeTool@0
       inputs:
-        versionSpec: '10.x'
+        versionSpec: $(nodeVersion)
       displayName: 'Install Node.js'
 
     - task: replacetokens@4
@@ -47,20 +57,20 @@ stages:
         additionalArguments: '--all-projects --detection-depth=6'
         serviceConnectionEndpoint: 'snyk-jessehouwing'
 
-    - task: TfxInstaller@3
+    - task: TfxInstaller@4
       displayName: 'Use Node CLI for Azure DevOps'
       inputs:
-        version: '0.9.x'
+        version: $(tfxVersion)
         checkLatest: true
 
-    - task: PackageAzureDevOpsExtension@3
+    - task: PackageAzureDevOpsExtension@4
       displayName: 'Package Extension: $(Build.SourcesDirectory)'
       name: 'packageStep'
       inputs:
         rootFolder: '$(Build.SourcesDirectory)'
-        outputPath: '$(Build.ArtifactStagingDirectory)\jessehouwing-vsts-variable-tasks.vsix'
+        outputPath: '$(Build.ArtifactStagingDirectory)\$(extensionId).vsix'
         publisherId: 'jessehouwing'
-        extensionId: 'jessehouwing-vsts-variable-tasks'
+        extensionId: $(extensionId)
         extensionTag: '-build'
         extensionName: 'Variable Toolbox'
         extensionVersion: '$(Build.BuildNumber)'
@@ -96,7 +106,7 @@ stages:
         pwsh: true
         workingDirectory: '$(Build.SourcesDirectory)'
       env:
-        vsix: '$(Build.ArtifactStagingDirectory)\jessehouwing-vsts-variable-tasks.vsix'
+        vsix: '$(Build.ArtifactStagingDirectory)\$(extensionId).vsix'
 
     - task: PublishPipelineArtifact@1
       displayName: 'Publish vsix'
@@ -127,31 +137,31 @@ stages:
           steps:
           - task: NodeTool@0
             inputs:
-              versionSpec: '10.x'
+              versionSpec: $(nodeVersion)
             displayName: 'Install Node.js'
 
-          - task: TfxInstaller@3
+          - task: TfxInstaller@4
             displayName: 'Use Node CLI for Azure DevOps'
             inputs:
-              version: '0.9.x'
+              version: $(tfxVersion)
               checkLatest: true
 
-          - task: PublishAzureDevOpsExtension@3
+          - task: PublishAzureDevOpsExtension@4
             name: 'publishDev'
             inputs:
               connectTo: 'VsTeam'
               connectedServiceName: 'Jesse Houwing'
               fileType: 'vsix'
-              vsixFile: '$(Pipeline.Workspace)/vsix/jessehouwing-vsts-variable-tasks.vsix'
+              vsixFile: '$(Pipeline.Workspace)/vsix/$(extensionId).vsix'
               publisherId: 'jessehouwing'
-              extensionId: 'jessehouwing-vsts-variable-tasks'
+              extensionId: '$(extensionId)'
               extensionTag: '-dev'
               updateTasksVersion: false
               extensionVisibility: 'privatepreview'
               shareWith: 'jessehouwing-dev'
               noWaitValidation: true
         
-          - task: IsAzureDevOpsExtensionValid@3
+          - task: IsAzureDevOpsExtensionValid@4
             inputs:
               connectTo: 'VsTeam'
               connectedServiceName: 'Jesse Houwing'
@@ -181,29 +191,29 @@ stages:
 
           - task: NodeTool@0
             inputs:
-              versionSpec: '10.x'
+              versionSpec: $(nodeVersion)
             displayName: 'Install Node.js'
             
           - task: TfxInstaller@3
             displayName: 'Use Node CLI for Azure DevOps'
             inputs:
-              version: '0.9.x'
+              version: $(tfxVersion)
               checkLatest: true
 
-          - task: PublishAzureDevOpsExtension@3
+          - task: PublishAzureDevOpsExtension@4
             name: 'publishProd'
             inputs:
               connectTo: 'VsTeam'
               connectedServiceName: 'Jesse Houwing'
               fileType: 'vsix'
-              vsixFile: '$(Pipeline.Workspace)/vsix/jessehouwing-vsts-variable-tasks.vsix'
+              vsixFile: '$(Pipeline.Workspace)/vsix/$(extensionId).vsix'
               publisherId: 'jessehouwing'
-              extensionId: 'jessehouwing-vsts-variable-tasks'
+              extensionId: $(extensionId)
               updateTasksVersion: false
               extensionVisibility: 'public'
               noWaitValidation: true
           
-          - task: IsAzureDevOpsExtensionValid@3
+          - task: IsAzureDevOpsExtensionValid@4
             inputs:
               connectTo: 'VsTeam'
               connectedServiceName: 'Jesse Houwing'
