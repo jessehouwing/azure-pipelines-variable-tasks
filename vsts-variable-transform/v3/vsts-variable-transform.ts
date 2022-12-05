@@ -1,5 +1,4 @@
 ﻿import * as tl from "azure-pipelines-task-lib/task";
-import "core-js";
 
 const transformAction = tl.getInput("transformAction", false) || "none";
 let value = tl.getInput("value") || "";
