@@ -202,7 +202,7 @@ function encodeString(value: string): string {
             return encodeURIComponent(value);
         case "base64":
         {
-            const buffer = new Buffer(value);
+            const buffer = Buffer.from(value);
             return buffer.toString("base64");
         }
         case "slashes":
@@ -222,7 +222,7 @@ function decodeString(value: string): string {
             return decodeURIComponent(value);
         case "base64":
         {
-            const buffer = new Buffer(value, "base64");
+            const buffer = Buffer.from(value, "base64");
             return buffer.toString();
         }
         case "slashes":
