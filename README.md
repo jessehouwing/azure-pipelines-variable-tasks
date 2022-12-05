@@ -1,5 +1,12 @@
 # Release Notes
 
+> **05-12-2022**
+> - Changed: Upped version to 3.*
+> - Updated to `Azure-pipelines-task-lib@4`
+> - Updated to Node 16 (available in `@3`)
+> - Removed Node 6 support from v3 (available for backwards-compat through `@2`)
+> - Dropped dependency on core-js for v3.
+
 > **19-10-2021**
 > - Added: Ability to update ReleaseName with the new command string required in Azure DevOps 2020.
 > - Added: Backwards compat option for Azure DevOps 2019 and below
