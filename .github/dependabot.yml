@@ -13,10 +13,18 @@ updates:
     schedule:
       interval: "weekly"
   - package-ecosystem: "npm"
+    directory: "/vsts-variable-set/v3"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "npm"
     directory: "/vsts-variable-transform/v1"
     schedule:
       interval: "weekly"
   - package-ecosystem: "npm"
     directory: "/vsts-variable-transform/v2"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "npm"
+    directory: "/vsts-variable-transform/v3"
     schedule:
       interval: "weekly"
