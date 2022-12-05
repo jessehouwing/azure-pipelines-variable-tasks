@@ -1,0 +1,18 @@
+{
+  "name": "vsts-variable-transform",
+  "version": "0.0.0",
+  "description": "Transform Variable",
+  "author": {
+    "name": "Jesse Houwing",
+    "email": "jesse.houwing@gmail.com"
+  },
+  "dependencies": {
+    "azure-pipelines-task-lib": "^4.1.0",
+    "core-js": "^3.26.1"
+  },
+  "scripts": {
+    "initdev:npm": "npm install",
+    "initdev": "npm run initdev:npm",
+    "build": "tsc && npm dedupe && npm prune --production"
+  }
+}
