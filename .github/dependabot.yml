@@ -8,23 +8,49 @@ updates:
     directory: "/vsts-variable-set/v1"
     schedule:
       interval: "weekly"
+    ignore:
+    - dependency-name: "azure-pipelines-task-lib"
+      update-types: ["version-update:semver-major"]
+    - dependency-name: "@types/node"
+      update-types: ["version-update:semver-major"]
   - package-ecosystem: "npm"
     directory: "/vsts-variable-set/v2"
     schedule:
       interval: "weekly"
+    ignore:
+    - dependency-name: "azure-pipelines-task-lib"
+      update-types: ["version-update:semver-major"]
+    - dependency-name: "@types/node"
+      update-types: ["version-update:semver-major"]
   - package-ecosystem: "npm"
     directory: "/vsts-variable-set/v3"
     schedule:
       interval: "weekly"
+    ignore:
+    - dependency-name: "@types/node"
+      update-types: ["version-update:semver-major"]
   - package-ecosystem: "npm"
     directory: "/vsts-variable-transform/v1"
     schedule:
       interval: "weekly"
+    ignore:
+    - dependency-name: "azure-pipelines-task-lib"
+      update-types: ["version-update:semver-major"]
+    - dependency-name: "@types/node"
+      update-types: ["version-update:semver-major"]
   - package-ecosystem: "npm"
     directory: "/vsts-variable-transform/v2"
     schedule:
       interval: "weekly"
+    ignore:
+    - dependency-name: "azure-pipelines-task-lib"
+      update-types: ["version-update:semver-major"]
+    - dependency-name: "@types/node"
+      update-types: ["version-update:semver-major"]
   - package-ecosystem: "npm"
     directory: "/vsts-variable-transform/v3"
     schedule:
       interval: "weekly"
+    ignore:
+    - dependency-name: "azure-pipelines-task-lib"
+      update-types: ["version-update:semver-major"]
