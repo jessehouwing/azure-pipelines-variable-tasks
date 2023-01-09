@@ -10,30 +10,10 @@
     {
       "packageNames": [
         "azure-pipelines-task-lib",
+        "@types/node"
       ],
-      "matchPaths": ["/vsts-variable-*/v3/package.json"],
-      "allowedVersions": "^4"
-    },
-    {
-      "packageNames": [
-        "@types/node",
-      ],
-      "matchPaths": ["/vsts-variable-*/v3/package.json"],
-      "allowedVersions": "^16"
-    },
-    {
-      "packageNames": [
-        "azure-pipelines-task-lib",
-      ],
-      "matchPaths": ["/vsts-variable-*/v2/package.json"],
-      "allowedVersions": "^2"
-    },
-    {
-      "packageNames": [
-        "@types/node",
-      ],
-      "matchPaths": ["/vsts-variable-*/v2/package.json"],
-      "allowedVersions": "^10"
+      "updateTypes": ["major"]
+      "enabled": false
     }
   ]
 }
