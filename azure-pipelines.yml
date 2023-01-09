@@ -28,7 +28,7 @@ stages:
   - job: 
     displayName: 'Build'
     steps:
-    - task: NodeTool@0
+    - task: NodeTool@0.213.0
       inputs:
         versionSpec: $(nodeVersion)
       displayName: 'Install Node.js'
