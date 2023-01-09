@@ -12,7 +12,7 @@
         "azure-pipelines-task-lib",
         "@types/node"
       ],
-      "updateTypes": ["major"]
+      "updateTypes": ["major"],
       "enabled": false
     }
   ]
