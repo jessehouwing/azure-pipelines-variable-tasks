@@ -108,7 +108,7 @@ stages:
       env:
         vsix: '$(Build.ArtifactStagingDirectory)\$(extensionId).vsix'
 
-    - task: PublishPipelineArtifact@1
+    - task: PublishPipelineArtifact@1.199.0
       displayName: 'Publish vsix'
       inputs:
         publishLocation: pipeline
@@ -116,7 +116,7 @@ stages:
         artifact: 'vsix'
       condition: succeededOrFailed()
 
-    - task: PublishPipelineArtifact@1
+    - task: PublishPipelineArtifact@1.199.0
       displayName: 'Publish tasks'
       inputs:
         publishLocation: pipeline
