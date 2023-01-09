@@ -3,4 +3,7 @@
   "extends": [
     "config:base"
   ]
+  "azure-pipelines": {
+    "enabled": true
+  }
 }
