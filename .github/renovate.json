@@ -10,7 +10,7 @@
     {
       "matchPackagePatterns": [
         "azure-pipelines-task-lib",
-        "@types/node",
+        "@types/node"
       ],
       "matchUpdateTypes": [
         "minor",
