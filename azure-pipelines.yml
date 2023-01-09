@@ -78,7 +78,7 @@ stages:
         updateTasksVersionType: patch
         extensionVisibility: private
     
-    - task: PowerShell@2
+    - task: PowerShell@2.212.0
       inputs:
         targetType: 'inline'
         script: |
