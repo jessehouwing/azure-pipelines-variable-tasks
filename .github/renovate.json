@@ -5,7 +5,7 @@
   ],
   "azure-pipelines": {
     "enabled": true
-  }
+  },
   "packageRules": [
     {
       "matchPackagePatterns": [
