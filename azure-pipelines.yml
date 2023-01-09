@@ -49,7 +49,7 @@ stages:
     - script: |
         npm run build
 
-    - task: SnykSecurityScan@0
+    - task: SnykSecurityScan@1.1.2
       inputs:
         testType: 'app'
         monitorOnBuild: false
