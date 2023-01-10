@@ -57,7 +57,7 @@ stages:
         additionalArguments: '--all-projects --detection-depth=6'
         serviceConnectionEndpoint: 'snyk-jessehouwing'
 
-    - task: TfxInstaller@4
+    - task: TfxInstaller@4.0.161
       displayName: 'Use Node CLI for Azure DevOps'
       inputs:
         version: $(tfxVersion)
