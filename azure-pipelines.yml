@@ -63,7 +63,7 @@ stages:
         version: $(tfxVersion)
         checkLatest: true
 
-    - task: PackageAzureDevOpsExtension@4
+    - task: PackageAzureDevOpsExtension@4.0.161
       displayName: 'Package Extension: $(Build.SourcesDirectory)'
       name: 'packageStep'
       inputs:
