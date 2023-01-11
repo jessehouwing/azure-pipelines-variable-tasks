@@ -33,7 +33,7 @@ stages:
         versionSpec: $(nodeVersion)
       displayName: 'Install Node.js'
 
-    - task: replacetokens@4
+    - task: replacetokens@5
       inputs:
         targetFiles: '**/task.json'
         encoding: 'utf-8'
