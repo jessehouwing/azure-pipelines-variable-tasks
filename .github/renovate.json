@@ -14,6 +14,10 @@
       ],
       "updateTypes": ["major"],
       "enabled": false
+    },
+    {
+      "matchDatasources": ["azure-pipelines-tasks"],
+      "extractVersion": "^(?<version>\\d+)"
     }
   ]
 }
