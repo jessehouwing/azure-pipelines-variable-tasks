@@ -40,6 +40,6 @@
     "eslint-plugin-import": "^2.27.5",
     "glob-exec": "^0.1.1",
     "tfx-cli": "^0.14.0",
-    "typescript": "^4.9.5"
+    "typescript": "^5.0.3"
   }
 }
