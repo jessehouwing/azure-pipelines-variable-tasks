@@ -34,7 +34,7 @@
     "@types/node": "^16.18.4",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "@typescript-eslint/eslint-plugin-tslint": "^5.52.0",
-    "@typescript-eslint/parser": "^5.52.0",
+    "@typescript-eslint/parser": "^5.57.1",
     "eslint": "^8.29.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-plugin-import": "^2.27.5",
