@@ -141,9 +141,9 @@ stages:
           - task: AzureCLI@2
             displayName: 'Authenticate with Service Principal'
             inputs:
-              azureSubscription: 'MVP Sponsorship (cec4b369-63dc-49d5-8422-3ed2e63e5f48)'
-              scriptType: pscore
-              scriptLocation: inlineScript
+              azureSubscription: 'azure-devops-marketplace'
+              scriptType: 'pscore'
+              scriptLocation: 'inlineScript'
               inlineScript: |
                 $accessToken = az account get-access-token --resource 499b84ac-1321-427f-aa17-267ca6975798 --query "accessToken" --output tsv
                 write-host "##vso[task.setendpoint id=901f3e7e-5ceb-4aaa-9720-575391a97fd1;field=authParameter;key=apitoken]$accessToken"
