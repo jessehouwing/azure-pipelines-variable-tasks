@@ -147,7 +147,7 @@ stages:
               inlineScript: |
                 $accessToken = az account get-access-token --resource 499b84ac-1321-427f-aa17-267ca6975798 --query "accessToken" --output tsv
                 write-host "##vso[task.setsecret]$accessToken"
-                write-host "##vso[task.setendpoint id=24325a98-0d4b-4180-9936-c930a4156258;field=authParameter;key=apitoken]$accessToken"
+                write-host "##vso[task.setendpoint id=24325a98-0d4b-4180-9936-c930a4156258;field=authParameter;key=password]$accessToken"
 
           - task: PublishAzureDevOpsExtension@4
             name: 'publishDev'
