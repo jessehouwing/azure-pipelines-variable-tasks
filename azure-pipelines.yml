@@ -19,7 +19,8 @@ variables:
     value: '16.x'
   - name: 'publisher'
     value: 'Marketplace'
-
+  - name: 'marketplaceServiceConnection'
+    value: '24325a98-0d4b-4180-9936-c930a4156258' 
 
 stages:
 - stage: 'Build'
@@ -138,11 +139,22 @@ stages:
               version: $(tfxVersion)
               checkLatest: true
 
+          - task: AzureCLI@2
+            displayName: 'Authenticate with Service Principal'
+            inputs:
+              azureSubscription: 'azure-devops-marketplace'
+              scriptType: 'pscore'
+              scriptLocation: 'inlineScript'
+              inlineScript: |
+                $accessToken = az account get-access-token --resource 499b84ac-1321-427f-aa17-267ca6975798 --query "accessToken" --output tsv
+                write-host "##vso[task.setsecret]$accessToken"
+                write-host "##vso[task.setendpoint id=$env:MARKETPLACESERVICECONNECTION;field=authParameter;key=password]$accessToken"
+            
           - task: PublishAzureDevOpsExtension@4
             name: 'publishDev'
             inputs:
               connectTo: 'VsTeam'
-              connectedServiceName: 'Jesse Houwing'
+              connectedServiceName: '$(marketplaceServiceConnection)'
               fileType: 'vsix'
               vsixFile: '$(Pipeline.Workspace)/vsix/$(extensionId).vsix'
               publisherId: 'jessehouwing'
@@ -156,7 +168,7 @@ stages:
           - task: IsAzureDevOpsExtensionValid@4
             inputs:
               connectTo: 'VsTeam'
-              connectedServiceName: 'Jesse Houwing'
+              connectedServiceName: '$(marketplaceServiceConnection)'
               method: 'vsix'
               vsixFile: '$(publishDev.Extension.OutputPath)'
 
@@ -192,11 +204,22 @@ stages:
               version: $(tfxVersion)
               checkLatest: true
 
+          - task: AzureCLI@2
+            displayName: 'Authenticate with Service Principal'
+            inputs:
+              azureSubscription: 'azure-devops-marketplace'
+              scriptType: 'pscore'
+              scriptLocation: 'inlineScript'
+              inlineScript: |
+                $accessToken = az account get-access-token --resource 499b84ac-1321-427f-aa17-267ca6975798 --query "accessToken" --output tsv
+                write-host "##vso[task.setsecret]$accessToken"
+                write-host "##vso[task.setendpoint id=$env:MARKETPLACESERVICECONNECTION;field=authParameter;key=password]$accessToken"
+                
           - task: PublishAzureDevOpsExtension@4
             name: 'publishProd'
             inputs:
               connectTo: 'VsTeam'
-              connectedServiceName: 'Jesse Houwing'
+              connectedServiceName: '$(marketplaceServiceConnection)'
               fileType: 'vsix'
               vsixFile: '$(Pipeline.Workspace)/vsix/$(extensionId).vsix'
               publisherId: 'jessehouwing'
@@ -208,7 +231,7 @@ stages:
           - task: IsAzureDevOpsExtensionValid@4
             inputs:
               connectTo: 'VsTeam'
-              connectedServiceName: 'Jesse Houwing'
+              connectedServiceName: '$(marketplaceServiceConnection)'
               method: 'vsix'
               vsixFile: '$(publishProd.Extension.OutputPath)'
 
