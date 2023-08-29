@@ -8,6 +8,10 @@
   },
   "packageRules": [
     {
+      "rangeStrategy": "bump",
+       "matchDatasources": ["npm"]
+    },
+    {
       "packageNames": [
         "azure-pipelines-task-lib",
         "@types/node"
