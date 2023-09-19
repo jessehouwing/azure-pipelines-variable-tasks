@@ -1,5 +1,8 @@
 # Release Notes
 
+> **19-09-2023**
+> - Added the ability to lift an enviroment variable from the agent to a workflow variable.
+
 > **05-12-2022**
 > - Changed: Upped version to 3.*
 > - Updated to `Azure-pipelines-task-lib@4`
