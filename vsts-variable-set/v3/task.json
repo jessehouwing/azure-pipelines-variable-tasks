@@ -60,8 +60,7 @@
       "options": {
         "value": "value",
         "env": "env"
-      },
-      "aliases": ["variableName"]
+      }      
     },
     {
       "defaultValue": "",

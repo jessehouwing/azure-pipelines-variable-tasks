@@ -35,12 +35,36 @@
   ],
   "inputs": [
     {
+      "defaultValue": "value",
+      "helpMarkdown": "Take the value from the input or an environment variable.",
+      "label": "From",
+      "name": "From",
+      "required": true,
+      "type": "pickList",
+      "options": {
+        "value": "value",
+        "env": "env"
+      }      
+    },
+    {
       "defaultValue": "",
-      "helpMarkdown": "Input value. You can use other variables as input as with any other text input using the `$(...)` notation anywhere in the value.",
-      "label": "Input Value",
-      "name": "value",
+      "helpMarkdown": "The value to assign to the variable.",
+      "label": "Value",
+      "name": "Value",
       "required": false,
-      "type": "string"
+      "type": "string",
+      "aliases": ["value"],
+      "visibleRule": "From=value"
+    },
+    {
+      "defaultValue": "",
+      "helpMarkdown": "The value to assign to the variable.",
+      "label": "Environment Variable",
+      "name": "Env",
+      "required": true,
+      "type": "string",
+      "aliases": ["Env", "Environment"],
+      "visibleRule": "From=env"
     },
     {
       "defaultValue": "",

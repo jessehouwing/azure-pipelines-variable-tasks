@@ -1,7 +1,29 @@
 ﻿import * as tl from "azure-pipelines-task-lib/task";
 
 const transformAction = tl.getInput("transformAction", false) || "none";
-let value = tl.getInput("value") || "";
+
+function getValue()
+{
+    const from = tl.getInput("From") || "value";
+    switch (from)
+    {
+        case "value":
+        {
+            return tl.getInput("Value");
+        }
+        case "env":
+        {
+            return process.env[tl.getInput("Env", true)];
+        }
+        default:
+        {
+            return "";
+        }
+    }
+}
+
+let value = getValue() || "";
+
 const isSecret = tl.getBoolInput("isSecret") || false;
 const useTaskLib = tl.getBoolInput("useTasklib") || false;
 const variable = tl.getInput("variableName", true);
