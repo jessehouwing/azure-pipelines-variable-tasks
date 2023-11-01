@@ -17,8 +17,6 @@ variables:
     value: '0.x'
   - name: 'nodeVersion'
     value: '16.x'
-  - name: 'publisher'
-    value: 'Marketplace'
   - name: 'marketplaceServiceConnection'
     value: '24325a98-0d4b-4180-9936-c930a4156258' 
 
