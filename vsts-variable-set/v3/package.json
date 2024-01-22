@@ -7,7 +7,7 @@
     "email": "jesse.houwing@gmail.com"
   },
   "dependencies": {
-    "azure-pipelines-task-lib": "^4.8.1"
+    "azure-pipelines-task-lib": "^4.8.2"
   },
   "scripts": {
     "initdev:npm": "npm install",
