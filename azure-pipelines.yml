@@ -149,11 +149,11 @@ stages:
                 write-host "##vso[task.setsecret]$accessToken"
                 write-host "##vso[task.setendpoint id=$env:MARKETPLACESERVICECONNECTION;field=authParameter;key=password]$accessToken"
             
-          - task: PublishAzureDevOpsExtension@4
+          - task: PublishAzureDevOpsExtension@5
             name: 'publishDev'
             inputs:
-              connectTo: 'VsTeam'
-              connectedServiceName: '$(marketplaceServiceConnection)'
+              connectTo: 'AzureRM'
+              connectedServiceNameAzureRM: 'azure-devops-marketplace'
               fileType: 'vsix'
               vsixFile: '$(Pipeline.Workspace)/vsix/$(extensionId).vsix'
               publisherId: 'jessehouwing'
