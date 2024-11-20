@@ -37,6 +37,8 @@ export default [
         },
 
         rules: {
+            ...typescriptEslint.configs.recommended.rules,
+            ...typescriptEslint.configs["recommended-requiring-type-checking"].rules,
             "@typescript-eslint/await-thenable": "error",
             "@typescript-eslint/no-floating-promises": "error",
             "@typescript-eslint/explicit-module-boundary-types": "off",
