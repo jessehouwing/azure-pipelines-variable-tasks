@@ -198,5 +198,5 @@ _Pvt_Extensions
 
 /typings
 /.cr
-/*/v[123]/*.js
-/*/v[123]/*.js.map
+/*/v[0-9]/*.js
+/*/v[0-9]/*.js.map
