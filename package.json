@@ -34,7 +34,7 @@
     "@eslint/js": "^9.20.0",
     "@types/core-js": "^2.5.8",
     "@types/node": "^16.18.126",
-    "eslint": "^9.19.0",
+    "eslint": "^9.20.0",
     "glob-exec": "^0.1.1",
     "globals": "^15.14.0",
     "tfx-cli": "^0.20.0",
