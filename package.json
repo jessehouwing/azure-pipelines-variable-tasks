@@ -30,7 +30,7 @@
   "author": "Jesse Houwing",
   "license": "MIT",
   "devDependencies": {
-    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/eslintrc": "^3.3.0",
     "@eslint/js": "^9.20.0",
     "@types/core-js": "^2.5.8",
     "@types/node": "^16.18.126",
