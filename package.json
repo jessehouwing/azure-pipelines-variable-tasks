@@ -39,8 +39,8 @@
     "globals": "^16.0.0",
     "tfx-cli": "^0.21.0",
     "typescript": "^5.8.2",
-    "typescript-eslint": "^8.27.0",
-    "@typescript-eslint/eslint-plugin": "^8.27.0",
-    "@typescript-eslint/parser": "^8.27.0"
+    "typescript-eslint": "^8.28.0",
+    "@typescript-eslint/eslint-plugin": "^8.28.0",
+    "@typescript-eslint/parser": "^8.28.0"
   }
 }
