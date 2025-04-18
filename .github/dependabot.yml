@@ -8,6 +8,14 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    groups:
+      ESLint:
+        patterns:
+          - esbuild
+          - eslint
+          - "@typescript-eslint/*"
+          - "@eslint/*"
+          - typescript-eslint
   - package-ecosystem: "npm"
     directory: "/vsts-variable-set/v1"
     schedule:
