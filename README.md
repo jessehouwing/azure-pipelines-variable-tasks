@@ -55,6 +55,15 @@ You can use the value of other build variables to setup the value.
 
 By assigning to the `Build.BuildNumber` variable, the build number of the Build will be updated/overwritten.
 
+## Set Variable to Current Date
+You can now set a variable to the current date with a specified date format. Simply add the **Set Variable** task to your workflow and select "currentDate" as the "From" option. Then specify the desired date format.
+
+> **Set: 'Build.CurrentDate' to the current date with format 'yyyyMMdd'** 
+> 
+> * *Variablename*: `Build.CurrentDate`
+> * *From*: `currentDate`
+> * *DateFormat*: `yyyyMMdd`
+
 # Transform value and assign to Variable
 If you need to do more advanced transformations of your values, use the transform task. You can use it to encode/decode the value and apply a number of simpe string manipulations, including Search & Replace, Change Case, Trim, Pad etc.
 
