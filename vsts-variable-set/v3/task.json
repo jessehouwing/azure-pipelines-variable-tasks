@@ -85,7 +85,7 @@
     },
     {
       "defaultValue": "yyyy-MM-dd HH:mm:ss",
-      "helpMarkdown": "Format string for the current date and time. Use yyyy for year, MM for month, dd for day, HH for hour (24h), mm for minute, ss for second. Example: 'yyyy-MM-dd HH:mm:ss' produces '2023-12-25 14:30:00'.",
+      "helpMarkdown": "Format string for the current date and time. Supported patterns: yyyy (4-digit year), yy (2-digit year), MM (2-digit month), dd (2-digit day), HH (24-hour), hh (12-hour), mm (minute), ss (second), tt (AM/PM). Example: 'yyyy-MM-dd HH:mm:ss' produces '2023-12-25 14:30:00'.",
       "label": "Date/Time Format",
       "name": "DateTimeFormat",
       "required": true,

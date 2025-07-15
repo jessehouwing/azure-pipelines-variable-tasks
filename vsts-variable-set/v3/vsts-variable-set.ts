@@ -5,46 +5,40 @@ const variable = tl.getInput("VariableName", true);
 function formatDateTime(format: string): string {
     const now = new Date();
     
-    // Simple format string replacement
-    // Use more specific patterns to avoid conflicts
+    // Simple and robust approach - only support explicit multi-character patterns
+    // This avoids conflicts with single characters in normal text
     let formatted = format;
     
-    // Year (4-digit and 2-digit)
+    // Year patterns
     formatted = formatted.replace(/yyyy/g, now.getFullYear().toString());
     formatted = formatted.replace(/yy/g, now.getFullYear().toString().slice(-2));
     
-    // Month (2-digit and 1-digit)
+    // Month patterns (2-digit and single digit with leading zero requirement)
     const month = (now.getMonth() + 1).toString().padStart(2, '0');
     formatted = formatted.replace(/MM/g, month);
-    formatted = formatted.replace(/\bM\b/g, (now.getMonth() + 1).toString());
     
-    // Day (2-digit and 1-digit)  
+    // Day patterns
     const day = now.getDate().toString().padStart(2, '0');
     formatted = formatted.replace(/dd/g, day);
-    formatted = formatted.replace(/\bd\b/g, now.getDate().toString());
     
-    // Hour 24-hour format (2-digit and 1-digit)
+    // Hour 24-hour patterns
     const hour = now.getHours().toString().padStart(2, '0');
     formatted = formatted.replace(/HH/g, hour);
-    formatted = formatted.replace(/\bH\b/g, now.getHours().toString());
     
-    // Hour 12-hour format (2-digit and 1-digit)
+    // Hour 12-hour patterns  
     const hour12 = (now.getHours() % 12 || 12).toString().padStart(2, '0');
     formatted = formatted.replace(/hh/g, hour12);
-    formatted = formatted.replace(/\bh\b/g, (now.getHours() % 12 || 12).toString());
     
-    // AM/PM
-    formatted = formatted.replace(/tt/g, now.getHours() >= 12 ? 'PM' : 'AM');
-    formatted = formatted.replace(/\bt\b/g, now.getHours() >= 12 ? 'P' : 'A');
-    
-    // Minute (2-digit) - handle after hours to avoid conflicts
+    // Minute patterns
     const minute = now.getMinutes().toString().padStart(2, '0');
     formatted = formatted.replace(/mm/g, minute);
     
-    // Second (2-digit and 1-digit)
+    // Second patterns
     const second = now.getSeconds().toString().padStart(2, '0');
     formatted = formatted.replace(/ss/g, second);
-    formatted = formatted.replace(/\bs\b/g, now.getSeconds().toString());
+    
+    // AM/PM patterns
+    formatted = formatted.replace(/tt/g, now.getHours() >= 12 ? 'PM' : 'AM');
     
     return formatted;
 }
