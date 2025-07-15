@@ -200,3 +200,4 @@ _Pvt_Extensions
 /.cr
 /*/v[0-9]/*.js
 /*/v[0-9]/*.js.map
+./*/v[0-9]/*.tsbuildinfo

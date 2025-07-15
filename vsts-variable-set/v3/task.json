@@ -59,7 +59,8 @@
       "type": "pickList",
       "options": {
         "value": "value",
-        "env": "env"
+        "env": "env",
+        "datetime": "current date/time"
       }      
     },
     {
@@ -81,6 +82,15 @@
       "type": "string",
       "aliases": ["Env", "Environment"],
       "visibleRule": "From=env"
+    },
+    {
+      "defaultValue": "yyyy-MM-dd HH:mm:ss",
+      "helpMarkdown": "Format string for the current date and time. Use yyyy for year, MM for month, dd for day, HH for hour (24h), mm for minute, ss for second. Example: 'yyyy-MM-dd HH:mm:ss' produces '2023-12-25 14:30:00'.",
+      "label": "Date/Time Format",
+      "name": "DateTimeFormat",
+      "required": true,
+      "type": "string",
+      "visibleRule": "From=datetime"
     },
     {
       "defaultValue": false,
