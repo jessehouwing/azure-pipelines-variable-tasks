@@ -2,6 +2,47 @@
 
 const variable = tl.getInput("VariableName", true);
 
+function formatDateTime(format: string): string {
+    const now = new Date();
+    
+    // Simple and robust approach - only support explicit multi-character patterns
+    // This avoids conflicts with single characters in normal text
+    let formatted = format;
+    
+    // Year patterns
+    formatted = formatted.replace(/yyyy/g, now.getFullYear().toString());
+    formatted = formatted.replace(/yy/g, now.getFullYear().toString().slice(-2));
+    
+    // Month patterns (2-digit and single digit with leading zero requirement)
+    const month = (now.getMonth() + 1).toString().padStart(2, '0');
+    formatted = formatted.replace(/MM/g, month);
+    
+    // Day patterns
+    const day = now.getDate().toString().padStart(2, '0');
+    formatted = formatted.replace(/dd/g, day);
+    
+    // Hour 24-hour patterns
+    const hour = now.getHours().toString().padStart(2, '0');
+    formatted = formatted.replace(/HH/g, hour);
+    
+    // Hour 12-hour patterns  
+    const hour12 = (now.getHours() % 12 || 12).toString().padStart(2, '0');
+    formatted = formatted.replace(/hh/g, hour12);
+    
+    // Minute patterns
+    const minute = now.getMinutes().toString().padStart(2, '0');
+    formatted = formatted.replace(/mm/g, minute);
+    
+    // Second patterns
+    const second = now.getSeconds().toString().padStart(2, '0');
+    formatted = formatted.replace(/ss/g, second);
+    
+    // AM/PM patterns
+    formatted = formatted.replace(/tt/g, now.getHours() >= 12 ? 'PM' : 'AM');
+    
+    return formatted;
+}
+
 function getValue()
 {
     const from = tl.getInput("From") || "value";
@@ -14,6 +55,11 @@ function getValue()
         case "env":
         {
             return process.env[tl.getInput("Env", true)];
+        }
+        case "datetime":
+        {
+            const format = tl.getInput("DateTimeFormat", true) || "yyyy-MM-dd HH:mm:ss";
+            return formatDateTime(format);
         }
         default:
         {
