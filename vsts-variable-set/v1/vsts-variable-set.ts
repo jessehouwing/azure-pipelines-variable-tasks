@@ -1,7 +1,36 @@
 ﻿import * as tl from "azure-pipelines-task-lib/task";
 
 const variable = tl.getInput("VariableName", true);
-const value = tl.getInput("Value");
+
+function getCurrentDate(format: string): string {
+    const date = new Date();
+    const options: Intl.DateTimeFormatOptions = {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+    };
+    return new Intl.DateTimeFormat('default', options).format(date).replace(/\//g, '-').replace(/, /g, ' ').replace(/:/g, '-');
+}
+
+function getValue() {
+    const from = tl.getInput("From") || "value";
+    switch (from) {
+        case "value":
+            return tl.getInput("Value");
+        case "env":
+            return process.env[tl.getInput("Env", true)];
+        case "currentDate":
+            return getCurrentDate(tl.getInput("DateFormat", true));
+        default:
+            return "";
+    }
+}
+
+const value = getValue();
 const isSecret = tl.getBoolInput("isSecret") || false;
 const useTaskLib = tl.getBoolInput("useTasklib") || false;
 

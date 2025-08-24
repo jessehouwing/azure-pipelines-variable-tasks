@@ -51,13 +51,46 @@
       "visibleRule": "VariableName=release.releasename"
     },
     {
+      "defaultValue": "value",
+      "helpMarkdown": "Take the value from the input or an environment variable.",
+      "label": "From",
+      "name": "From",
+      "required": true,
+      "type": "pickList",
+      "options": {
+        "value": "value",
+        "env": "env",
+        "currentDate": "currentDate"
+      }
+    },
+    {
       "defaultValue": "",
       "helpMarkdown": "The value to assign to the variable.",
       "label": "Value",
       "name": "Value",
       "required": false,
       "type": "string",
-      "aliases": ["value"]
+      "aliases": ["value"],
+      "visibleRule": "From=value"
+    },
+    {
+      "defaultValue": "",
+      "helpMarkdown": "The value to assign to the variable.",
+      "label": "Environment Variable",
+      "name": "Env",
+      "required": true,
+      "type": "string",
+      "aliases": ["Env", "Environment"],
+      "visibleRule": "From=env"
+    },
+    {
+      "defaultValue": "yyyy-MM-dd",
+      "helpMarkdown": "The date format to use when setting the variable to the current date.",
+      "label": "Date Format",
+      "name": "DateFormat",
+      "required": true,
+      "type": "string",
+      "visibleRule": "From=currentDate"
     },
     {
       "defaultValue": false,
