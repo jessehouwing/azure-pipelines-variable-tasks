@@ -346,6 +346,10 @@
     "Node16": {
       "target": "vsts-variable-transform.js",
       "argumentFormat": ""
+    },
+    "Node20_1": {
+      "target": "vsts-variable-transform.js",
+      "argumentFormat": ""
     }
   }
 }

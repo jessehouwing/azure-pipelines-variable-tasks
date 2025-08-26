@@ -13,5 +13,8 @@
     "initdev:npm": "npm install",
     "initdev": "npm run initdev:npm",
     "build": "tsc && npm dedupe && npm prune --production"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.11"
   }
 }

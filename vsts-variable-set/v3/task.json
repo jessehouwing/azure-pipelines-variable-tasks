@@ -39,7 +39,9 @@
       "properties": {
         "EditableOptions": "True"
       },
-      "aliases": ["variableName"]
+      "aliases": [
+        "variableName"
+      ]
     },
     {
       "defaultValue": false,
@@ -60,7 +62,7 @@
       "options": {
         "value": "value",
         "env": "env"
-      }      
+      }
     },
     {
       "defaultValue": "",
@@ -69,7 +71,9 @@
       "name": "Value",
       "required": false,
       "type": "string",
-      "aliases": ["value"],
+      "aliases": [
+        "value"
+      ],
       "visibleRule": "From=value"
     },
     {
@@ -79,7 +83,10 @@
       "name": "Env",
       "required": true,
       "type": "string",
-      "aliases": ["Env", "Environment"],
+      "aliases": [
+        "Env",
+        "Environment"
+      ],
       "visibleRule": "From=env"
     },
     {
@@ -117,6 +124,10 @@
       "argumentFormat": ""
     },
     "Node10": {
+      "target": "vsts-variable-set.js",
+      "argumentFormat": ""
+    },
+    "Node20_1": {
       "target": "vsts-variable-set.js",
       "argumentFormat": ""
     }
