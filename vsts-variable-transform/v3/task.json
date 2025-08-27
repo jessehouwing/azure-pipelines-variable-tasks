@@ -130,7 +130,7 @@
       "type": "radio",
       "label": "Direction",
       "required": true,
-      "helpMarkDown": "Pick between encode or decode using the selcted action.",
+      "helpMarkDown": "Pick between encode or decode using the selected action.",
       "options": {
         "encodeString": "Encode",
         "decodeString": "Decode"
