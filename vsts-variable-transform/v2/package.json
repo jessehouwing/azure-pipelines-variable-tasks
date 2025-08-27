@@ -16,5 +16,6 @@
     "build": "tsc && npm dedupe && npm prune --production"
   },
   "devDependencies": {
+    "@types/node": "^16.18.126"
   }
 }
