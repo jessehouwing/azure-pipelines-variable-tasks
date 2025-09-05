@@ -31,11 +31,11 @@
   "license": "MIT",
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.34.0",
+    "@eslint/js": "^9.35.0",
     "@types/core-js": "^2.5.8",
     "@typescript-eslint/eslint-plugin": "^8.42.0",
     "@typescript-eslint/parser": "^8.42.0",
-    "eslint": "^9.34.0",
+    "eslint": "^9.35.0",
     "glob-exec": "^0.1.1",
     "globals": "^16.3.0",
     "tfx-cli": "^0.22.0",
