@@ -30,206 +30,24 @@ stages:
         versionSpec: $(nodeVersion)
       displayName: 'Install Node.js'
 
-    - task: replacetokens@6
-      inputs:
-        sources: '**/task.json'
-        encoding: 'utf-8'
-        tokenPattern: 'default'
-        addBOM: false
-
-    - script: |
-        npm install
-
-    - script: |
-        npm run initdev
-    
-    - script: |
-        npm run build
-
     - task: TfxInstaller@5
       displayName: 'Use Node CLI for Azure DevOps'
+
+    - task: IsAzureDevOpsExtensionValid@5
       inputs:
-        version: $(tfxVersion)
-        checkLatest: true
+        connectTo: 'AzureRM'
+        connectedServiceNameAzureRM: 'azure-devops-marketplace'
+        method: id
+        publisherId: jessehouwing
+        extensionId: jessehouwing-vsts-variable-tasks-dev
+        extensionVersion: 3.0.1122
 
-    - task: PackageAzureDevOpsExtension@5
-      displayName: 'Package Extension: $(Build.SourcesDirectory)'
-      name: 'packageStep'
+
+    - task: IsAzureDevOpsExtensionValid@4
       inputs:
-        rootFolder: '$(Build.SourcesDirectory)'
-        outputPath: '$(Build.ArtifactStagingDirectory)\$(extensionId).vsix'
-        publisherId: 'jessehouwing'
-        extensionId: $(extensionId)
-        extensionTag: '-build'
-        extensionName: 'Variable Toolbox'
-        extensionVersion: '$(Build.BuildNumber)'
-        updateTasksVersion: true
-        updateTasksVersionType: patch
-        extensionVisibility: private
-    
-    - task: PowerShell@2
-      inputs:
-        targetType: 'inline'
-        script: |
-          md _tmp
-          md _output
-          
-          Expand-Archive -Path $env:vsix -DestinationPath .\_tmp
-          $manifest = gc .\_tmp\extension.vsomanifest | ConvertFrom-Json
-          
-          foreach ($contribution in $manifest.contributions | ?{ $_.type -eq "ms.vss-distributed-task.task"})
-          {
-              $path = join-path -path ".\_tmp\" -childpath $contribution.properties.name
-              $versions = Get-ChildItem -Attributes Directory -Path $path
-              foreach ($version in $versions | %{$_.name})
-              {
-                  $taskpath = join-path -path $path -childpath $version
-                  $taskmanifestPath = (join-path -path $taskpath -childpath "task.json")
-                  $taskManifest = gc $taskmanifestPath | ConvertFrom-Json -AsHashTable
-                  $taskName = $taskManifest.name
-                  $output = join-path -path ".\_output" -childpath "$taskName$($version.ToUpper()).zip"
-          
-                  Compress-Archive -Path $taskpath\* -DestinationPath $output
-              }
-          }
-        pwsh: true
-        workingDirectory: '$(Build.SourcesDirectory)'
-      env:
-        vsix: '$(Build.ArtifactStagingDirectory)\$(extensionId).vsix'
-
-    - task: PublishPipelineArtifact@1
-      displayName: 'Publish vsix'
-      inputs:
-        publishLocation: pipeline
-        targetPath: '$(packageStep.Extension.OutputPath)'
-        artifact: 'vsix'
-      condition: succeededOrFailed()
-
-    - task: PublishPipelineArtifact@1
-      displayName: 'Publish tasks'
-      inputs:
-        publishLocation: pipeline
-        targetPath: '$(Build.SourcesDirectory)\_output'
-        artifact: 'tasks'
-      condition: succeededOrFailed()
-
-- stage: PublishDev
-  displayName: 'Publish privately'
-  condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
-  dependsOn: 'Build'
-  jobs:
-    - deployment: 
-      environment: Publisher JesseHouwing (privately)
-      strategy: 
-        runOnce:
-         deploy:
-          steps:
-          - task: NodeTool@0
-            inputs:
-              versionSpec: $(nodeVersion)
-            displayName: 'Install Node.js'
-
-          - task: TfxInstaller@5
-            displayName: 'Use Node CLI for Azure DevOps'
-            inputs:
-              version: $(tfxVersion)
-              checkLatest: true
-
-          - task: PublishAzureDevOpsExtension@5
-            name: 'publishDev'
-            inputs:
-              connectTo: 'AzureRM'
-              connectedServiceNameAzureRM: 'azure-devops-marketplace'
-              fileType: 'vsix'
-              vsixFile: '$(Pipeline.Workspace)/vsix/$(extensionId).vsix'
-              publisherId: 'jessehouwing'
-              extensionId: '$(extensionId)'
-              extensionTag: '-dev'
-              updateTasksVersion: false
-              extensionVisibility: 'privatepreview'
-              shareWith: 'jessehouwing-dev'
-              noWaitValidation: true
-        
-          - task: IsAzureDevOpsExtensionValid@5
-            inputs:
-              connectTo: 'AzureRM'
-              connectedServiceNameAzureRM: 'azure-devops-marketplace'
-              method: 'vsix'
-              vsixFile: '$(publishDev.Extension.OutputPath)'
-
-
-          - task: PublishPipelineArtifact@1
-            displayName: 'Publish vsix'
-            inputs:
-              publishLocation: pipeline
-              targetPath: '$(publishDev.Extension.OutputPath)'
-              artifact: 'dev'
-            condition: succeededOrFailed()
-
-- stage: PublishProd
-  displayName: 'Publish publicly'
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
-  dependsOn: 'PublishDev'
-  jobs:
-    - deployment: 
-      environment: Publisher JesseHouwing (publicly)
-      strategy: 
-        runOnce:
-         deploy:
-          steps:
-
-          - task: NodeTool@0
-            inputs:
-              versionSpec: $(nodeVersion)
-            displayName: 'Install Node.js'
-            
-          - task: TfxInstaller@5
-            displayName: 'Use Node CLI for Azure DevOps'
-            inputs:
-              version: $(tfxVersion)
-              checkLatest: true
-
-          - task: PublishAzureDevOpsExtension@5
-            name: 'publishProd'
-            inputs:
-              connectTo: 'AzureRM'
-              connectedServiceNameAzureRM: 'azure-devops-marketplace'
-              fileType: 'vsix'
-              vsixFile: '$(Pipeline.Workspace)/vsix/$(extensionId).vsix'
-              publisherId: 'jessehouwing'
-              extensionId: $(extensionId)
-              updateTasksVersion: false
-              extensionVisibility: 'public'
-              noWaitValidation: true
-          
-          - task: IsAzureDevOpsExtensionValid@5
-            inputs:
-              connectTo: 'AzureRM'
-              connectedServiceNameAzureRM: 'azure-devops-marketplace'
-              method: 'vsix'
-              vsixFile: '$(publishProd.Extension.OutputPath)'
-
-          - task: PublishPipelineArtifact@1
-            displayName: 'Publish vsix'
-            inputs:
-              publishLocation: pipeline
-              targetPath: '$(publishProd.Extension.OutputPath)'
-              artifact: 'prod'
-            condition: succeededOrFailed()
-
-          - task: GitHubRelease@1
-            inputs:
-              gitHubConnection: 'GitHub - jessehouwing'
-              repositoryName: '$(Build.Repository.Name)'
-              action: 'create'
-              target: '$(Build.SourceVersion)'
-              tagSource: 'userSpecifiedTag'
-              tag: 'v$(Build.BuildNumber)'
-              title: 'v$(Build.BuildNumber)'
-              releaseNotesSource: 'inline'
-              assets: |
-                $(publishProd.Extension.OutputPath)*
-                $(Pipeline.Workspace)/tasks/*
-              changeLogCompareToRelease: 'lastFullRelease'
-              changeLogType: 'issueBased'
-              changeLogLabels: '[{ "state" : "closed" }]'
+        connectTo: 'AzureRM'
+        connectedServiceNameAzureRM: 'azure-devops-marketplace'
+        method: id
+        publisherId: jessehouwing
+        extensionId: jessehouwing-vsts-variable-tasks-dev
+        extensionVersion: 3.0.1122
