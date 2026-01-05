@@ -350,6 +350,10 @@
     "Node20_1": {
       "target": "vsts-variable-transform.js",
       "argumentFormat": ""
+    },
+    "Node24": {
+      "target": "vsts-variable-transform.js",
+      "argumentFormat": ""
     }
   }
 }
