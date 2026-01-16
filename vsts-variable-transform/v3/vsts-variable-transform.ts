@@ -79,7 +79,7 @@ if (variable.search(/^Build[._]BuildNumber$/i) >= 0) {
     tl.setResult(tl.TaskResult.Succeeded, `Set release name to: ${value}`);
 } else {
     if (useTaskLib) {
-        tl.setVariable(variable, value, isSecret);
+        tl.setVariable(variable, value, isSecret, isOutput);
         const newValue=tl.getVariable(variable);
         console.log(`Set ${variable} to: ${newValue}`);
     } else {
