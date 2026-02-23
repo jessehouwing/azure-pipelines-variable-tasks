@@ -84,7 +84,7 @@ function applyManipulations(value: string): string {
     if (tl.getBoolInput("substring", false)) {
         tl.debug("Applying selected Substring.");
         const substringType = tl.getInput("substringType", true);
-        let length = 0;
+        let length: number;
 
         switch (substringType) {
             case "substring":

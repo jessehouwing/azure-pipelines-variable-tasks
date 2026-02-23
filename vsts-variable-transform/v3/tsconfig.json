@@ -3,7 +3,8 @@
     "module": "commonjs",
     "target": "es6",
     "outDir": ".",
-    "rootDir": "."
+    "rootDir": ".",
+    "types": ["node"]
   },
   "exclude": [
     "node_modules"

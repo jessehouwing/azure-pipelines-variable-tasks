@@ -19,7 +19,7 @@
     "compile:tasks": "glob-exec \"vsts-variable-*/*/tsconfig.json\" -- \"tsc -b {{files.join(' ')}}\"",
     "postcompile:tasks": "npm run lint:tasks",
     "cleanup:tasks": "glob-exec --parallel --foreach \"vsts-variable-*/*/tsconfig.json\" -- \"cd {{file.dir}} && npm dedupe && npm prune --production\"",
-    "lint:tasks": "glob-exec --parallel --foreach \"vsts-variable-*/*/tsconfig.json\" -- \"eslint {{file.dir}}\\**\\*.ts --parser-options \"{'project':['{{file}}']}\"",
+    "lint:tasks": "eslint \"vsts-variable-*/**/*.ts\"",
     "package:tasks": "tfx extension create --root . --output-path dist --manifest-globs vss-extension.json",
     "build": "npm run build:tasks",
     "build:clean": "npm run clean && npm run initdev && npm run build",
@@ -30,16 +30,13 @@
   "author": "Jesse Houwing",
   "license": "MIT",
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.3",
     "@eslint/js": "^10.0.1",
     "@types/core-js": "^2.5.8",
-    "@typescript-eslint/eslint-plugin": "^8.55.0",
-    "@typescript-eslint/parser": "^8.55.0",
-    "eslint": "^10.0.0",
+    "eslint": "^10.0.1",
     "glob-exec": "^0.1.1",
     "globals": "^17.3.0",
     "tfx-cli": "^0.23.1",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.55.0"
+    "typescript-eslint": "^8.56.0"
   }
 }
