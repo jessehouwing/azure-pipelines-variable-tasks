@@ -2,7 +2,7 @@
 
 const variable = tl.getInput("VariableName", true);
 
-function getValue()
+function getValue(): string | undefined
 {
     const from = tl.getInput("From") || "value";
     switch (from)
@@ -13,7 +13,8 @@ function getValue()
         }
         case "env":
         {
-            return process.env[tl.getInput("Env", true)];
+            const envName = tl.getInput("Env", true);
+            return process.env[envName];
         }
         default:
         {
