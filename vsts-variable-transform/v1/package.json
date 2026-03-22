@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "azure-pipelines-task-lib": "^5.2.8",
-    "core-js": "^3.48.0"
+    "core-js": "^3.49.0"
   },
   "scripts": {
     "initdev:npm": "npm install",
