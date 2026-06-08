@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<test-results xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="nunit_schema_2.5.xsd" name="Pester" total="6" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2026-06-08" time="23:42:53">
+  <environment user="runneradmin" clr-version="8.0.27" os-version="10.0.26100" machine-name="runnervmlu3mh" user-domain="runnervmlu3mh" cwd="D:\a\azure-pipelines-variable-tasks\azure-pipelines-variable-tasks" nunit-version="2.5.8.0" platform="Microsoft Windows Server 2025 Datacenter|C:\Windows|\Device\Harddisk0\Partition4" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="TestFixture" name="Pester" executed="True" result="Success" success="True" time="1.4826" asserts="0" description="Pester">
+    <results>
+      <test-suite type="TestFixture" name="D:\a\azure-pipelines-variable-tasks\azure-pipelines-variable-tasks\vsts-variable-expand\v1\vsts-variable-expand.v3.Tests.ps1" executed="True" result="Success" success="True" time="0.8692" asserts="0" description="D:\a\azure-pipelines-variable-tasks\azure-pipelines-variable-tasks\vsts-variable-expand\v1\vsts-variable-expand.v3.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="vsts-variable-expand.v3.ps1" executed="True" result="Success" success="True" time="0.3587" asserts="0" description="vsts-variable-expand.v3.ps1">
+            <results>
+              <test-suite type="TestFixture" name="vsts-variable-expand.v3.ps1.When the script runs" executed="True" result="Success" success="True" time="0.3468" asserts="0" description="vsts-variable-expand.v3.ps1.When the script runs">
+                <results>
+                  <test-case description="Should show deprecation warning" name="vsts-variable-expand.v3.ps1.When the script runs.Should show deprecation warning" time="0.2039" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should set result to SucceededWithIssues" name="vsts-variable-expand.v3.ps1.When the script runs.Should set result to SucceededWithIssues" time="0.0223" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="D:\a\azure-pipelines-variable-tasks\azure-pipelines-variable-tasks\vsts-variable-set\v1\vsts-variable-set.v3.Tests.ps1" executed="True" result="Success" success="True" time="0.6134" asserts="0" description="D:\a\azure-pipelines-variable-tasks\azure-pipelines-variable-tasks\vsts-variable-set\v1\vsts-variable-set.v3.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="vsts-variable-set.v3.ps1" executed="True" result="Success" success="True" time="0.5613" asserts="0" description="vsts-variable-set.v3.ps1">
+            <results>
+              <test-suite type="TestFixture" name="vsts-variable-set.v3.ps1.When setting a regular variable" executed="True" result="Success" success="True" time="0.1372" asserts="0" description="vsts-variable-set.v3.ps1.When setting a regular variable">
+                <results>
+                  <test-case description="Should call Set-VstsTaskVariable with correct parameters" name="vsts-variable-set.v3.ps1.When setting a regular variable.Should call Set-VstsTaskVariable with correct parameters" time="0.0906" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should set result to Succeeded" name="vsts-variable-set.v3.ps1.When setting a regular variable.Should set result to Succeeded" time="0.0291" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="vsts-variable-set.v3.ps1.When setting Build.BuildNumber" executed="True" result="Success" success="True" time="0.2523" asserts="0" description="vsts-variable-set.v3.ps1.When setting Build.BuildNumber">
+                <results>
+                  <test-case description="Should call Write-VstsUpdateBuildNumber" name="vsts-variable-set.v3.ps1.When setting Build.BuildNumber.Should call Write-VstsUpdateBuildNumber" time="0.0959" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="vsts-variable-set.v3.ps1.When setting a secret variable" executed="True" result="Success" success="True" time="0.5565" asserts="0" description="vsts-variable-set.v3.ps1.When setting a secret variable">
+                <results>
+                  <test-case description="Should call Set-VstsTaskVariable with Secret flag" name="vsts-variable-set.v3.ps1.When setting a secret variable.Should call Set-VstsTaskVariable with Secret flag" time="0.2771" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

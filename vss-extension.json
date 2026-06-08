@@ -2,7 +2,7 @@
   "manifestVersion": 1,
   "id": "jessehouwing-vsts-variable-tasks",
   "name": "Variable Toolbox",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "publisher": "jessehouwing",
   "targets": [
     {
@@ -34,7 +34,6 @@
     },
     {
       "path": "extension/Images/Screenshots/expandvariables.png"
-
     }
   ],
   "content": {

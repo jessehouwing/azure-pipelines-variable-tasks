@@ -39,7 +39,9 @@
       "properties": {
         "EditableOptions": "True"
       },
-      "aliases": ["variableName"]
+      "aliases": [
+        "variableName"
+      ]
     },
     {
       "defaultValue": false,
@@ -57,7 +59,9 @@
       "name": "Value",
       "required": false,
       "type": "string",
-      "aliases": ["value"]
+      "aliases": [
+        "value"
+      ]
     },
     {
       "defaultValue": false,
