@@ -2,7 +2,7 @@ BeforeAll {
     # Mock the VstsTaskSdk functions
     function Get-VstsInput { param($name, $default, [switch]$AsBool) }
     function Write-VstsUpdateBuildNumber { param($value) }
-    function Set-VstsTaskVariable { param($name, $value, [switch]$Secret) }
+    function Set-VstsTaskVariable { param($name, $value, [bool]$Secret) }
     function Write-VstsSetResult { param($Result, $message) }
     function Write-VstsTaskWarning { param($Message) }
 }
