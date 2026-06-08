@@ -149,7 +149,8 @@ describe('searchAndReplace', () => {
                 search: '',
                 replacement: '-',
             });
-            expect(result.value).toBe('-h-i-');
+            // split('') splits into individual characters, join('-') joins with separator
+            expect(result.value).toBe('h-i');
         });
     });
 
