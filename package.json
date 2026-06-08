@@ -37,6 +37,6 @@
     "globals": "^17.6.0",
     "tfx-cli": "^0.23.1",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.60.1"
+    "typescript-eslint": "^8.61.0"
   }
 }
