@@ -8,27 +8,60 @@ pr:
 - main
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-latest'
 
 variables:
   - name: 'extensionId'
     value: 'jessehouwing-vsts-variable-tasks'
   - name: 'tfxVersion'
     value: 'builtin'
-  - name: 'nodeVersion'
-    value: '18.x'
+
+strategy:
+  matrix:
+    Node20_Ubuntu:
+      nodeVersion: '20.x'
+      vmImage: 'ubuntu-latest'
+    Node24_Ubuntu:
+      nodeVersion: '24.x'
+      vmImage: 'ubuntu-latest'
+    Node20_Windows:
+      nodeVersion: '20.x'
+      vmImage: 'windows-latest'
+    Node24_Windows:
+      nodeVersion: '24.x'
+      vmImage: 'windows-latest'
 
 stages:
 - stage: 'Build'
   displayName: 'Build'
   jobs:
   - job: 
-    displayName: 'Build'
+    displayName: 'Build and Test'
+    pool:
+      vmImage: $(vmImage)
     steps:
     - task: NodeTool@0
       inputs:
         versionSpec: $(nodeVersion)
-      displayName: 'Install Node.js'
+      displayName: 'Install Node.js $(nodeVersion)'
+
+    - script: npm install --legacy-peer-deps
+      displayName: 'Install dependencies'
+
+    - script: npm run build
+      displayName: 'Build'
+
+    - script: npm run lint
+      displayName: 'Lint'
+
+    - pwsh: |
+        npm run test
+      displayName: 'Run Jest tests'
+
+    - pwsh: |
+        Install-Module -Name Pester -MinimumVersion 5.0 -Force -Scope CurrentUser
+        Invoke-Pester -Path './vsts-variable-*' -Output Detailed -CI
+      displayName: 'Run Pester tests'
 
     - task: replacetokens@7
       inputs:
@@ -36,21 +69,14 @@ stages:
         encoding: 'utf-8'
         tokenPattern: 'default'
         addBOM: false
-
-    - script: |
-        npm install
-
-    - script: |
-        npm run initdev
-    
-    - script: |
-        npm run build
+      condition: and(succeeded(), eq(variables['nodeVersion'], '24.x'), eq(variables['vmImage'], 'windows-latest'))
 
     - task: TfxInstaller@5
       displayName: 'Use Node CLI for Azure DevOps'
       inputs:
         version: $(tfxVersion)
         checkLatest: true
+      condition: and(succeeded(), eq(variables['nodeVersion'], '24.x'), eq(variables['vmImage'], 'windows-latest'))
 
     - task: PackageAzureDevOpsExtension@5
       displayName: 'Package Extension: $(Build.SourcesDirectory)'
@@ -66,36 +92,7 @@ stages:
         updateTasksVersion: true
         updateTasksVersionType: patch
         extensionVisibility: private
-    
-    - task: PowerShell@2
-      inputs:
-        targetType: 'inline'
-        script: |
-          md _tmp
-          md _output
-          
-          Expand-Archive -Path $env:vsix -DestinationPath .\_tmp
-          $manifest = gc .\_tmp\extension.vsomanifest | ConvertFrom-Json
-          
-          foreach ($contribution in $manifest.contributions | ?{ $_.type -eq "ms.vss-distributed-task.task"})
-          {
-              $path = join-path -path ".\_tmp\" -childpath $contribution.properties.name
-              $versions = Get-ChildItem -Attributes Directory -Path $path
-              foreach ($version in $versions | %{$_.name})
-              {
-                  $taskpath = join-path -path $path -childpath $version
-                  $taskmanifestPath = (join-path -path $taskpath -childpath "task.json")
-                  $taskManifest = gc $taskmanifestPath | ConvertFrom-Json -AsHashTable
-                  $taskName = $taskManifest.name
-                  $output = join-path -path ".\_output" -childpath "$taskName$($version.ToUpper()).zip"
-          
-                  Compress-Archive -Path $taskpath\* -DestinationPath $output
-              }
-          }
-        pwsh: true
-        workingDirectory: '$(Build.SourcesDirectory)'
-      env:
-        vsix: '$(Build.ArtifactStagingDirectory)\$(extensionId).vsix'
+      condition: and(succeeded(), eq(variables['nodeVersion'], '24.x'), eq(variables['vmImage'], 'windows-latest'))
 
     - task: PublishPipelineArtifact@1
       displayName: 'Publish vsix'
@@ -103,15 +100,7 @@ stages:
         publishLocation: pipeline
         targetPath: '$(packageStep.Extension.OutputPath)'
         artifact: 'vsix'
-      condition: succeededOrFailed()
-
-    - task: PublishPipelineArtifact@1
-      displayName: 'Publish tasks'
-      inputs:
-        publishLocation: pipeline
-        targetPath: '$(Build.SourcesDirectory)\_output'
-        artifact: 'tasks'
-      condition: succeededOrFailed()
+      condition: and(succeededOrFailed(), eq(variables['nodeVersion'], '24.x'), eq(variables['vmImage'], 'windows-latest'))
 
 - stage: PublishDev
   displayName: 'Publish privately'
@@ -126,7 +115,7 @@ stages:
           steps:
           - task: NodeTool@0
             inputs:
-              versionSpec: $(nodeVersion)
+              versionSpec: '24.x'
             displayName: 'Install Node.js'
 
           - task: TfxInstaller@5
@@ -157,7 +146,6 @@ stages:
               method: 'vsix'
               vsixFile: '$(publishDev.Extension.OutputPath)'
 
-
           - task: PublishPipelineArtifact@1
             displayName: 'Publish vsix'
             inputs:
@@ -180,7 +168,7 @@ stages:
 
           - task: NodeTool@0
             inputs:
-              versionSpec: $(nodeVersion)
+              versionSpec: '24.x'
             displayName: 'Install Node.js'
             
           - task: TfxInstaller@5
@@ -229,7 +217,6 @@ stages:
               releaseNotesSource: 'inline'
               assets: |
                 $(publishProd.Extension.OutputPath)*
-                $(Pipeline.Workspace)/tasks/*
               changeLogCompareToRelease: 'lastFullRelease'
               changeLogType: 'issueBased'
               changeLogLabels: '[{ "state" : "closed" }]'

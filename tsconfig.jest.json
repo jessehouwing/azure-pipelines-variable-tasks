@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["node", "jest"],
+    "noEmit": true,
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "ignoreDeprecations": "6.0",
+    "composite": false,
+    "incremental": false
+  },
+  "include": ["vsts-variable-*/*/src/**/*.ts", "jest.config.ts"]
+}

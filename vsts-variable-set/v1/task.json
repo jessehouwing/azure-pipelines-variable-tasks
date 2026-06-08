@@ -62,7 +62,7 @@
   "instanceNameFormat": "Set variable: $(VariableName) to: '$(Value)'",
   "execution": {
     "Node": {
-      "target": "vsts-variable-set.js",
+      "target": "dist/vsts-variable-set.js",
       "argumentFormat": ""
     },
     "PowerShell": {

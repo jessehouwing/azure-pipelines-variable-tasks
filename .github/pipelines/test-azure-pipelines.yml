@@ -1,0 +1,121 @@
+# Test Azure Pipelines
+#
+# Triggered by the release workflow to validate the Variable Toolbox tasks
+# against a real Azure Pipelines build after installing the preview extension
+# in the jessehouwing-dev organization.
+#
+# Tests run on both Node 20 and Node 24 runtimes across Windows and Ubuntu.
+
+name: test-$(Date:yyyyMMdd)$(Rev:.r)
+
+trigger: none
+pr: none
+
+parameters:
+- name: vmImage
+  type: string
+  default: windows-latest
+
+jobs:
+- job: Test
+  pool:
+    vmImage: ${{ parameters.vmImage }}
+  steps:
+  - checkout: self
+
+  - task: NodeTool@0
+    displayName: Setup Node.js 20
+    inputs:
+      versionSpec: '20.x'
+
+  - task: VariableSetTask@3
+    displayName: 'Test Set Variable - basic value'
+    inputs:
+      variableName: 'TestVar1'
+      Value: 'Hello World'
+
+  - script: |
+      echo "TestVar1: $(TestVar1)"
+    displayName: 'Verify TestVar1 is set'
+
+  - task: VariableSetTask@3
+    displayName: 'Test Set Variable - from env'
+    inputs:
+      variableName: 'TestVar2'
+      From: 'env'
+      Env: 'PATH'
+
+  - script: |
+      echo "TestVar2 length: ${#TestVar2}"
+    displayName: 'Verify TestVar2 from env is set'
+    env:
+      TestVar2: $(TestVar2)
+
+  - task: VariableTransformTask@3
+    displayName: 'Test Transform - uppercase'
+    inputs:
+      Value: 'hello world'
+      variableName: 'TestTransform1'
+      casing: true
+      casingType: 'toUpper'
+
+  - script: |
+      echo "TestTransform1: $(TestTransform1)"
+    displayName: 'Verify uppercase transform'
+
+  - task: VariableTransformTask@3
+    displayName: 'Test Transform - base64 encode'
+    inputs:
+      Value: 'Hello World'
+      variableName: 'TestTransform2'
+      transformAction: 'base64'
+      encodeOrDecode: 'encodeString'
+      pointInTime: 'afterManipulation'
+
+  - script: |
+      echo "TestTransform2: $(TestTransform2)"
+    displayName: 'Verify base64 encode transform'
+
+  - task: VariableTransformTask@3
+    displayName: 'Test Transform - search and replace'
+    inputs:
+      Value: 'Hello World'
+      variableName: 'TestTransform3'
+      searchReplace: true
+      searchReplaceMethod: 'basic'
+      searchValue: 'World'
+      replacementValue: 'Azure'
+
+  - script: |
+      echo "TestTransform3: $(TestTransform3)"
+    displayName: 'Verify search and replace transform'
+
+  - task: NodeTool@0
+    displayName: Setup Node.js 24
+    inputs:
+      versionSpec: '24.x'
+
+  - task: VariableSetTask@3
+    displayName: 'Test Set Variable on Node 24'
+    inputs:
+      variableName: 'TestVarNode24'
+      Value: 'Node24 Works'
+
+  - script: |
+      echo "TestVarNode24: $(TestVarNode24)"
+    displayName: 'Verify Node 24 compatibility'
+
+  - task: VariableTransformTask@3
+    displayName: 'Test Transform on Node 24 - trim and pad'
+    inputs:
+      Value: '  hello  '
+      variableName: 'TestTransformNode24'
+      trim: true
+      pad: true
+      padType: 'left'
+      padChar: '0'
+      padLength: '10'
+
+  - script: |
+      echo "TestTransformNode24: $(TestTransformNode24)"
+    displayName: 'Verify Node 24 transform'

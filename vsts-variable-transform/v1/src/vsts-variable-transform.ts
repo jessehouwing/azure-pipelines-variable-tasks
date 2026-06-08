@@ -1,35 +1,9 @@
 ﻿import * as tl from "azure-pipelines-task-lib/task";
 
-const transformAction = tl.getInput("transformAction", false) || "none";
-
-function getValue(): string | undefined
-{
-    const from = tl.getInput("From") || "value";
-    switch (from)
-    {
-        case "value":
-        {
-            return tl.getInput("Value");
-        }
-        case "env":
-        {
-            const envName = tl.getInput("Env", true);
-            return process.env[envName];
-        }
-        default:
-        {
-            return "";
-        }
-    }
-}
-
-let value = getValue() || "";
-
+const transformAction = tl.getInput("transformAction", true);
+let value = tl.getInput("value") || "";
 const isSecret = tl.getBoolInput("isSecret") || false;
 const useTaskLib = tl.getBoolInput("useTasklib") || false;
-const variable = tl.getInput("variableName", true);
-const useSetVariableForReleaseName = tl.getBoolInput("useSetVariableForReleaseName") || false;
-const isOutput = tl.getBoolInput("isOutput") || false;
 
 if (transformAction !== "none") {
     tl.debug("Transformation selected.");
@@ -60,34 +34,27 @@ if (transformAction !== "none") {
     value = applyManipulations(value);
 }
 
+const variable = tl.getInput("variableName", true);
+
 if (variable.search(/^Build[._]BuildNumber$/i) >= 0) {
     if (useTaskLib) {
-        tl.updateBuildNumber(value);
+        tl.command("build.updatebuildnumber", null, value);
     } else {
         console.log(`##vso[build.updatebuildnumber]${value}`);
     }
-    
+
     console.log(`Set buildnumber to: ${value}`);
     tl.setResult(tl.TaskResult.Succeeded, `Set buildnumber to: ${value}`);
-} else if (!useSetVariableForReleaseName && variable.search(/^release[._]releasename$/i) >= 0) {
-    if (useTaskLib) {
-        tl.updateReleaseName(value);
-    } else {
-        console.log(`##vso[release.updatereleasename]${value}`);
-    }
-    
-    console.log(`Set release name to: ${value}`);
-    tl.setResult(tl.TaskResult.Succeeded, `Set release name to: ${value}`);
 } else {
     if (useTaskLib) {
-        tl.setVariable(variable, value, isSecret, isOutput);
-        const newValue=tl.getVariable(variable);
-        console.log(`Set ${variable} to: ${newValue}`);
+        tl.setVariable(variable, value, isSecret);
     } else {
-        console.log(`##vso[task.setvariable variable=${variable};isSecret=${ isSecret ? 'true' : 'false' };isOutput=${ isOutput ? 'true' : 'false' };]${value}`);
+        console.log(`##vso[task.setvariable variable=${variable};isSecret=${ isSecret ? 'true' : 'false' };]${value}`);
     }
 
-    tl.setResult(tl.TaskResult.Succeeded, `Set ${variable} to: ${value}`);
+    const newValue=tl.getVariable(variable);
+    console.log(`Set ${variable} to: ${newValue}`);
+    tl.setResult(tl.TaskResult.Succeeded, `Set ${variable} to: ${newValue}`);
 }
 
 function applyManipulations(value: string): string {
@@ -225,7 +192,7 @@ function encodeString(value: string): string {
             return encodeURIComponent(value);
         case "base64":
         {
-            const buffer = Buffer.from(value);
+            const buffer = new Buffer(value);
             return buffer.toString("base64");
         }
         case "slashes":
@@ -245,7 +212,7 @@ function decodeString(value: string): string {
             return decodeURIComponent(value);
         case "base64":
         {
-            const buffer = Buffer.from(value, "base64");
+            const buffer = new Buffer(value, "base64");
             return buffer.toString();
         }
         case "slashes":

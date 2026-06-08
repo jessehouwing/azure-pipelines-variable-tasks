@@ -120,19 +120,19 @@
   "instanceNameFormat": "Set variable: $(VariableName) to: '$(Value)'",
   "execution": {
     "Node16": {
-      "target": "vsts-variable-set.js",
+      "target": "dist/vsts-variable-set.js",
       "argumentFormat": ""
     },
     "Node10": {
-      "target": "vsts-variable-set.js",
+      "target": "dist/vsts-variable-set.js",
       "argumentFormat": ""
     },
     "Node20_1": {
-      "target": "vsts-variable-set.js",
+      "target": "dist/vsts-variable-set.js",
       "argumentFormat": ""
     },
     "Node24": {
-      "target": "vsts-variable-set.js",
+      "target": "dist/vsts-variable-set.js",
       "argumentFormat": ""
     }
   }
