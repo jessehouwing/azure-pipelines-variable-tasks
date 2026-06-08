@@ -223,7 +223,7 @@ function decodeString(value: string): string {
 }
 
 function stripSlashes(str: string): string {
-    return str.replace(/\\(.?)/g, (s:string, n1:string) => {
+    return str.replace(/\\(.?)/g, (_s:string, n1:string) => {
         switch (n1) {
             case "\\":
                 return "\\";
