@@ -1,30 +1,7 @@
 ﻿import * as tl from "azure-pipelines-task-lib/task";
 
 const transformAction = tl.getInput("transformAction", false) || "none";
-
-function getValue(): string | undefined
-{
-    const from = tl.getInput("From") || "value";
-    switch (from)
-    {
-        case "value":
-        {
-            return tl.getInput("Value");
-        }
-        case "env":
-        {
-            const envName = tl.getInput("Env", true);
-            return process.env[envName];
-        }
-        default:
-        {
-            return "";
-        }
-    }
-}
-
-let value = getValue() || "";
-
+let value = tl.getInput("value") || "";
 const isSecret = tl.getBoolInput("isSecret") || false;
 const useTaskLib = tl.getBoolInput("useTasklib") || false;
 const variable = tl.getInput("variableName", true);
@@ -225,7 +202,7 @@ function encodeString(value: string): string {
             return encodeURIComponent(value);
         case "base64":
         {
-            const buffer = Buffer.from(value);
+            const buffer = new Buffer(value);
             return buffer.toString("base64");
         }
         case "slashes":
@@ -245,7 +222,7 @@ function decodeString(value: string): string {
             return decodeURIComponent(value);
         case "base64":
         {
-            const buffer = Buffer.from(value, "base64");
+            const buffer = new Buffer(value, "base64");
             return buffer.toString();
         }
         case "slashes":
@@ -256,7 +233,7 @@ function decodeString(value: string): string {
 }
 
 function stripSlashes(str: string): string {
-    return str.replace(/\\(.?)/g, (s:string, n1:string) => {
+    return str.replace(/\\(.?)/g, (_s:string, n1:string) => {
         switch (n1) {
             case "\\":
                 return "\\";

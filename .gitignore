@@ -198,6 +198,7 @@ _Pvt_Extensions
 
 /typings
 /.cr
-/*/v[0-9]/*.js
-/*/v[0-9]/*.js.map
+/*/v[0-9]/dist/
+/*/v[0-9]/build/
 tsconfig.tsbuildinfo
+coverage/

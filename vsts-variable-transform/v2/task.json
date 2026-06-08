@@ -316,11 +316,11 @@
   "instanceNameFormat": "Transform value '$(value)' and assign to variable: $(variableName)",
   "execution": {
     "Node": {
-      "target": "vsts-variable-transform.js",
+      "target": "dist/vsts-variable-transform.js",
       "argumentFormat": ""
     },
     "Node10": {
-      "target": "vsts-variable-transform.js",
+      "target": "dist/vsts-variable-transform.js",
       "argumentFormat": ""
     }
   }

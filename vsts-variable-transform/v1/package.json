@@ -1,21 +1,15 @@
 {
-  "name": "vsts-variable-transform",
-  "version": "0.0.0",
-  "description": "Transform Variable",
+  "name": "vsts-variable-transform-v1",
+  "version": "1.0.0",
+  "description": "Transform Variable v1",
   "author": {
     "name": "Jesse Houwing",
     "email": "jesse.houwing@gmail.com"
   },
-  "dependencies": {
-    "azure-pipelines-task-lib": "^5.2.10",
-    "core-js": "^3.49.0"
-  },
   "scripts": {
-    "initdev:npm": "npm install",
-    "initdev": "npm run initdev:npm",
-    "build": "tsc && npm dedupe && npm prune --production"
+    "build": "rollup -c rollup.config.mjs"
   },
-  "devDependencies": {
-    "@types/node": "^16.18.126"
+  "dependencies": {
+    "azure-pipelines-task-lib": "^5.2.10"
   }
 }
