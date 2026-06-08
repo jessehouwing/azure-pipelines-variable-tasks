@@ -4,7 +4,8 @@
 # against a real Azure Pipelines build after installing the preview extension
 # in the jessehouwing-dev organization.
 #
-# Tests run on both Node 20 and Node 24 runtimes across Windows and Ubuntu.
+# Tests all task versions (V1, V2, V3) across Windows and Ubuntu with
+# configurable Node runtime.
 
 name: test-$(Date:yyyyMMdd)$(Rev:.r)
 
@@ -15,101 +16,185 @@ parameters:
 - name: vmImage
   type: string
   default: windows-latest
+- name: nodeVersion
+  type: string
+  default: '20.x'
 
 jobs:
-- job: Test
+- job: TestV1
+  displayName: 'Test V1 tasks'
   pool:
     vmImage: ${{ parameters.vmImage }}
   steps:
   - checkout: self
 
-  - task: NodeTool@0
-    displayName: Setup Node.js 20
+  - task: UseNode@1
+    displayName: 'Setup Node.js ${{ parameters.nodeVersion }}'
     inputs:
-      versionSpec: '20.x'
+      version: '${{ parameters.nodeVersion }}'
 
-  - task: VariableSetTask@3
-    displayName: 'Test Set Variable - basic value'
+  - task: VariableSetTask@1
+    displayName: 'V1 - Set Variable basic value'
     inputs:
-      variableName: 'TestVar1'
-      Value: 'Hello World'
+      variableName: 'TestVar1_V1'
+      Value: 'Hello from V1'
 
   - script: |
-      echo "TestVar1: $(TestVar1)"
-    displayName: 'Verify TestVar1 is set'
+      echo "TestVar1_V1: $(TestVar1_V1)"
+    displayName: 'Verify V1 set variable'
 
-  - task: VariableSetTask@3
-    displayName: 'Test Set Variable - from env'
+  - task: VariableTransformTask@1
+    displayName: 'V1 - Transform uppercase'
     inputs:
-      variableName: 'TestVar2'
-      From: 'env'
-      Env: 'PATH'
-
-  - script: |
-      echo "TestVar2 length: ${#TestVar2}"
-    displayName: 'Verify TestVar2 from env is set'
-    env:
-      TestVar2: $(TestVar2)
-
-  - task: VariableTransformTask@3
-    displayName: 'Test Transform - uppercase'
-    inputs:
-      Value: 'hello world'
-      variableName: 'TestTransform1'
+      value: 'hello world'
+      variableName: 'TestTransform1_V1'
       casing: true
       casingType: 'toUpper'
 
   - script: |
-      echo "TestTransform1: $(TestTransform1)"
-    displayName: 'Verify uppercase transform'
+      echo "TestTransform1_V1: $(TestTransform1_V1)"
+    displayName: 'Verify V1 uppercase transform'
 
-  - task: VariableTransformTask@3
-    displayName: 'Test Transform - base64 encode'
+  - task: VariableTransformTask@1
+    displayName: 'V1 - Transform search and replace'
     inputs:
-      Value: 'Hello World'
-      variableName: 'TestTransform2'
-      transformAction: 'base64'
-      encodeOrDecode: 'encodeString'
-      pointInTime: 'afterManipulation'
-
-  - script: |
-      echo "TestTransform2: $(TestTransform2)"
-    displayName: 'Verify base64 encode transform'
-
-  - task: VariableTransformTask@3
-    displayName: 'Test Transform - search and replace'
-    inputs:
-      Value: 'Hello World'
-      variableName: 'TestTransform3'
+      value: 'Hello World'
+      variableName: 'TestTransform2_V1'
       searchReplace: true
       searchReplaceMethod: 'basic'
       searchValue: 'World'
       replacementValue: 'Azure'
 
   - script: |
-      echo "TestTransform3: $(TestTransform3)"
-    displayName: 'Verify search and replace transform'
+      echo "TestTransform2_V1: $(TestTransform2_V1)"
+    displayName: 'Verify V1 search and replace'
 
-  - task: NodeTool@0
-    displayName: Setup Node.js 24
-    inputs:
-      versionSpec: '24.x'
+- job: TestV2
+  displayName: 'Test V2 tasks'
+  pool:
+    vmImage: ${{ parameters.vmImage }}
+  steps:
+  - checkout: self
 
-  - task: VariableSetTask@3
-    displayName: 'Test Set Variable on Node 24'
+  - task: UseNode@1
+    displayName: 'Setup Node.js ${{ parameters.nodeVersion }}'
     inputs:
-      variableName: 'TestVarNode24'
-      Value: 'Node24 Works'
+      version: '${{ parameters.nodeVersion }}'
+
+  - task: VariableSetTask@2
+    displayName: 'V2 - Set Variable basic value'
+    inputs:
+      variableName: 'TestVar1_V2'
+      value: 'Hello from V2'
 
   - script: |
-      echo "TestVarNode24: $(TestVarNode24)"
-    displayName: 'Verify Node 24 compatibility'
+      echo "TestVar1_V2: $(TestVar1_V2)"
+    displayName: 'Verify V2 set variable'
+
+  - task: VariableTransformTask@2
+    displayName: 'V2 - Transform uppercase'
+    inputs:
+      value: 'hello world'
+      variableName: 'TestTransform1_V2'
+      casing: true
+      casingType: 'toUpper'
+
+  - script: |
+      echo "TestTransform1_V2: $(TestTransform1_V2)"
+    displayName: 'Verify V2 uppercase transform'
+
+  - task: VariableTransformTask@2
+    displayName: 'V2 - Transform base64 encode'
+    inputs:
+      value: 'Hello World'
+      variableName: 'TestTransform2_V2'
+      transformAction: 'base64'
+      encodeOrDecode: 'encodeString'
+      pointInTime: 'afterManipulation'
+
+  - script: |
+      echo "TestTransform2_V2: $(TestTransform2_V2)"
+    displayName: 'Verify V2 base64 encode'
+
+- job: TestV3
+  displayName: 'Test V3 tasks'
+  pool:
+    vmImage: ${{ parameters.vmImage }}
+  steps:
+  - checkout: self
+
+  - task: UseNode@1
+    displayName: 'Setup Node.js ${{ parameters.nodeVersion }}'
+    inputs:
+      version: '${{ parameters.nodeVersion }}'
+
+  - task: VariableSetTask@3
+    displayName: 'V3 - Set Variable basic value'
+    inputs:
+      variableName: 'TestVar1_V3'
+      Value: 'Hello from V3'
+
+  - script: |
+      echo "TestVar1_V3: $(TestVar1_V3)"
+    displayName: 'Verify V3 set variable'
+
+  - task: VariableSetTask@3
+    displayName: 'V3 - Set Variable from env'
+    inputs:
+      variableName: 'TestVar2_V3'
+      From: 'env'
+      Env: 'PATH'
+
+  - script: |
+      echo "TestVar2_V3 length: ${#TestVar2_V3}"
+    displayName: 'Verify V3 set from env'
+    env:
+      TestVar2_V3: $(TestVar2_V3)
 
   - task: VariableTransformTask@3
-    displayName: 'Test Transform on Node 24 - trim and pad'
+    displayName: 'V3 - Transform uppercase'
+    inputs:
+      Value: 'hello world'
+      variableName: 'TestTransform1_V3'
+      casing: true
+      casingType: 'toUpper'
+
+  - script: |
+      echo "TestTransform1_V3: $(TestTransform1_V3)"
+    displayName: 'Verify V3 uppercase transform'
+
+  - task: VariableTransformTask@3
+    displayName: 'V3 - Transform base64 encode'
+    inputs:
+      Value: 'Hello World'
+      variableName: 'TestTransform2_V3'
+      transformAction: 'base64'
+      encodeOrDecode: 'encodeString'
+      pointInTime: 'afterManipulation'
+
+  - script: |
+      echo "TestTransform2_V3: $(TestTransform2_V3)"
+    displayName: 'Verify V3 base64 encode'
+
+  - task: VariableTransformTask@3
+    displayName: 'V3 - Transform search and replace'
+    inputs:
+      Value: 'Hello World'
+      variableName: 'TestTransform3_V3'
+      searchReplace: true
+      searchReplaceMethod: 'basic'
+      searchValue: 'World'
+      replacementValue: 'Azure'
+
+  - script: |
+      echo "TestTransform3_V3: $(TestTransform3_V3)"
+    displayName: 'Verify V3 search and replace'
+
+  - task: VariableTransformTask@3
+    displayName: 'V3 - Transform trim and pad'
     inputs:
       Value: '  hello  '
-      variableName: 'TestTransformNode24'
+      variableName: 'TestTransform4_V3'
       trim: true
       pad: true
       padType: 'left'
@@ -117,5 +202,6 @@ jobs:
       padLength: '10'
 
   - script: |
-      echo "TestTransformNode24: $(TestTransformNode24)"
-    displayName: 'Verify Node 24 transform'
+      echo "TestTransform4_V3: $(TestTransform4_V3)"
+    displayName: 'Verify V3 trim and pad'
+

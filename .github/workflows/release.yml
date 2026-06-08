@@ -251,7 +251,7 @@ jobs:
   # Triggers the Azure DevOps test pipeline and waits for completion.
   # ---------------------------------------------------------------------------
   test-azure-pipelines:
-    name: Test Azure Pipelines (${{ matrix.vmImage }})
+    name: Test Azure Pipelines (${{ matrix.vmImage }}, Node ${{ matrix.nodeVersion }})
     needs: [prepare-release, preview-release]
     runs-on: ubuntu-latest
     strategy:
@@ -260,6 +260,9 @@ jobs:
         vmImage:
           - ubuntu-latest
           - windows-latest
+        nodeVersion:
+          - '20.x'
+          - '24.x'
     environment:
       name: 'private'
       url: ${{ steps.run-azdo-pipeline.outputs.pipeline_run_url }}
@@ -300,6 +303,7 @@ jobs:
           AZDO_ORGANIZATION: https://dev.azure.com/jessehouwing-dev
           AZDO_PROJECT: azure-pipelines-variable-tasks-test
           TEST_VM_IMAGE: ${{ matrix.vmImage }}
+          TEST_NODE_VERSION: ${{ matrix.nodeVersion }}
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
@@ -358,6 +362,7 @@ jobs:
             '--project', $project,
             '--parameters',
             "vmImage=$($env:TEST_VM_IMAGE)",
+            "nodeVersion=$($env:TEST_NODE_VERSION)",
             '--query', 'id',
             '--output', 'tsv'
           )).Trim()
