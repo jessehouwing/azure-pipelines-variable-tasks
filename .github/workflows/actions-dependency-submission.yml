@@ -17,6 +17,11 @@ jobs:
       contents: write
 
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
       - uses: jessehouwing/actions-dependency-submission@d4ed9fd03b1c91e31a62d9a4095440128ec1316b # 1.0.15
         with:
