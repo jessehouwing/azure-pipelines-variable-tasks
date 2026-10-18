@@ -342,8 +342,8 @@ jobs:
           AZURE_DEVOPS_EXT_PAT: ${{ steps.get-azdo-token.outputs.azdo_token }}
           AZDO_PIPELINE_NAME: ${{ vars.AZDO_TEST_PIPELINE_NAME }}
           RELEASE_VERSION: ${{ needs.prepare-release.outputs.version }}
-          AZDO_ORGANIZATION: https://dev.azure.com/jessehouwing-dev
-          AZDO_PROJECT: azure-pipelines-variable-tasks-test
+          AZDO_ORGANIZATION: https://dev.azure.com/jessehouwing
+          AZDO_PROJECT: azure-devops-extensions
           TEST_VM_IMAGE: ${{ matrix.vmImage }}
           TEST_NODE_VERSION: ${{ matrix.nodeVersion }}
         shell: pwsh
@@ -460,8 +460,8 @@ jobs:
         continue-on-error: true
         env:
           AZDO_PIPELINE_RUN_ID: ${{ steps.run-azdo-pipeline.outputs.pipeline_run_id }}
-          AZDO_ORGANIZATION: https://dev.azure.com/jessehouwing-dev
-          AZDO_PROJECT: azure-pipelines-variable-tasks-test
+          AZDO_ORGANIZATION: https://dev.azure.com/jessehouwing
+          AZDO_PROJECT: azure-devops-extensions
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
