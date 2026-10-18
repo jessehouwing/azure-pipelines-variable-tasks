@@ -22,7 +22,7 @@
   ],
   "scripts": {
     "build": "npm run build --workspaces --if-present",
-    "build:clean": "npm run clean && npm install --legacy-peer-deps && npm run build",
+    "build:clean": "npm run clean && npm install && npm run build",
     "package:tasks": "tfx extension create --root . --output-path dist --manifest-globs vss-extension.json",
     "test": "jest --no-coverage",
     "test:coverage": "jest --coverage",
