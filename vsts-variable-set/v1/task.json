@@ -8,8 +8,8 @@
   "author": "Jesse Houwing",
   "version": {
     "Major": 1,
-    "Minor": 5,
-    "Patch": 0
+    "Minor": 6,
+    "Patch": 2
   },
   "visibility": [
     "Build",
@@ -31,7 +31,9 @@
       "name": "VariableName",
       "required": true,
       "type": "string",
-      "aliases": ["variableName"]
+      "aliases": [
+        "variableName"
+      ]
     },
     {
       "defaultValue": "",

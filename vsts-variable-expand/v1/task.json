@@ -9,17 +9,15 @@
   "author": "Jesse Houwing",
   "version": {
     "Major": 1,
-    "Minor": 5,
-    "Patch": 0
+    "Minor": 6,
+    "Patch": 2
   },
   "visibility": [
     "Build",
     "Release"
   ],
   "minimumAgentVersion": "1.83.0",
-  "groups": [
-
-  ],
+  "groups": [],
   "inputs": [
     {
       "defaultValue": "*",
