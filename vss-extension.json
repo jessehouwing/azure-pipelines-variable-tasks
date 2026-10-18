@@ -67,11 +67,6 @@
       "href": "https://github.com/sponsors/jessehouwing",
       "uri": "https://img.shields.io/github/sponsors/jessehouwing",
       "description": "GitHub Sponsors"
-    },
-    {
-      "href": "//gitter.im/jessehouwing/vsts-variable-tasks?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge",
-      "uri": "//badges.gitter.im/jessehouwing/vsts-variable-tasks.svg",
-      "description": "Chat"
     }
   ],
   "repository": {
