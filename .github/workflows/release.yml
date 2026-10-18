@@ -10,8 +10,7 @@ run-name: Release ${{ inputs.version && format('v{0}', inputs.version) || github
 #   AZDO_TEST_PIPELINE_NAME  - Name of the Azure DevOps test pipeline to trigger
 #
 # Required environments (with protection rules):
-#   private  - For preview release and testing
-#   public   - For production releases (requires approval)
+#   public   - For all jobs that use Azure login (preview, testing, production, cleanup)
 
 on:
   push:
@@ -43,6 +42,7 @@ jobs:
   prepare-release:
     name: Prepare release
     runs-on: windows-latest
+    environment: public
     permissions:
       contents: write
       attestations: write
@@ -206,7 +206,7 @@ jobs:
     needs: [prepare-release]
     runs-on: windows-latest
     environment:
-      name: 'private'
+      name: public
       url: https://marketplace.visualstudio.com/items?itemName=${{ env.PUBLISHER_ID }}.${{ env.EXTENSION_ID }}-dev
 
     permissions:
@@ -306,7 +306,7 @@ jobs:
           - '20.x'
           - '24.x'
     environment:
-      name: 'private'
+      name: public
       url: ${{ steps.run-azdo-pipeline.outputs.pipeline_run_url }}
 
     permissions:
@@ -636,7 +636,7 @@ jobs:
     needs: [prepare-release, publish-production]
     runs-on: ubuntu-latest
     if: always() && needs.publish-production.result == 'success'
-    environment: private
+    environment: public
 
     permissions:
       contents: read
