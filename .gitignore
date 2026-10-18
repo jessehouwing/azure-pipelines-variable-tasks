@@ -202,3 +202,6 @@ _Pvt_Extensions
 /*/v[0-9]/build/
 tsconfig.tsbuildinfo
 coverage/
+
+**/*.js
+**/*.js.map
