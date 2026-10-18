@@ -80,8 +80,6 @@ dependencies:
         commit: 'sha1-1c6d0b1857ded127f882c0d26f22b4bd103afd2a'
         owner_id: 4173387
         repo_id: 1158033287
-        uses:
-            - 'jessehouwing/azdo-marketplace@v6.3.16'
     'softprops/action-gh-release@v3.0.2':
         ref: 'v3.0.2'
         commit: 'sha1-3d0d9888cb7fd7b750713d6e236d1fcb99157228'
