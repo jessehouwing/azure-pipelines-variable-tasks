@@ -72,11 +72,6 @@
       "href": "//gitter.im/jessehouwing/vsts-variable-tasks?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge",
       "uri": "//badges.gitter.im/jessehouwing/vsts-variable-tasks.svg",
       "description": "Chat"
-    },
-    {
-      "href": "https://jessehouwing.visualstudio.com/vsts-extensions/vsts-extensions%20Team/_build/index?definitionId=47&_a=completed",
-      "uri": "https://jessehouwing.visualstudio.com/_apis/public/build/definitions/a88536a2-a889-45a3-a955-ddf1af8aeba1/47/badge",
-      "description": "Build"
     }
   ],
   "repository": {
