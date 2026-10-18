@@ -41,92 +41,13 @@ updates:
     development-dependencies:
       dependency-type: development
 - package-ecosystem: "npm"
-  directory: "/vsts-variable-set/v1"
-  schedule:
-    interval: "weekly"
-  cooldown:
-    default-days: 3
-  groups:
-    minor-updates:
-      dependency-type: production
-      update-types:
-      - minor
-      - patch
-    development-dependencies:
-      dependency-type: development
-  ignore:
-  - dependency-name: "azure-pipelines-task-lib"
-    update-types: [ "version-update:semver-major" ]
-- package-ecosystem: "npm"
-  directory: "/vsts-variable-set/v2"
-  schedule:
-    interval: "weekly"
-  cooldown:
-    default-days: 3
-  groups:
-    minor-updates:
-      dependency-type: production
-      update-types:
-      - minor
-      - patch
-    development-dependencies:
-      dependency-type: development
-  ignore:
-  - dependency-name: "azure-pipelines-task-lib"
-    update-types: [ "version-update:semver-major" ]
-- package-ecosystem: "npm"
-  directory: "/vsts-variable-set/v3"
-  schedule:
-    interval: "weekly"
-  cooldown:
-    default-days: 3
-  groups:
-    minor-updates:
-      dependency-type: production
-      update-types:
-      - minor
-      - patch
-    development-dependencies:
-      dependency-type: development
-  ignore:
-  - dependency-name: "azure-pipelines-task-lib"
-    update-types: [ "version-update:semver-major" ]
-- package-ecosystem: "npm"
-  directory: "/vsts-variable-transform/v1"
-  schedule:
-    interval: "weekly"
-  cooldown:
-    default-days: 3
-  groups:
-    minor-updates:
-      dependency-type: production
-      update-types:
-      - minor
-      - patch
-    development-dependencies:
-      dependency-type: development
-  ignore:
-  - dependency-name: "azure-pipelines-task-lib"
-    update-types: [ "version-update:semver-major" ]
-- package-ecosystem: "npm"
-  directory: "/vsts-variable-transform/v2"
-  schedule:
-    interval: "weekly"
-  cooldown:
-    default-days: 3
-  groups:
-    minor-updates:
-      dependency-type: production
-      update-types:
-      - minor
-      - patch
-    development-dependencies:
-      dependency-type: development
-  ignore:
-  - dependency-name: "azure-pipelines-task-lib"
-    update-types: [ "version-update:semver-major" ]
-- package-ecosystem: "npm"
-  directory: "/vsts-variable-transform/v3"
+  directories:
+  - "/vsts-variable-set/v1"
+  - "/vsts-variable-set/v2"
+  - "/vsts-variable-set/v3"
+  - "/vsts-variable-transform/v1"
+  - "/vsts-variable-transform/v2"
+  - "/vsts-variable-transform/v3"
   schedule:
     interval: "weekly"
   cooldown:
