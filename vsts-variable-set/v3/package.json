@@ -10,6 +10,6 @@
     "build": "rollup -c rollup.config.mjs"
   },
   "dependencies": {
-    "azure-pipelines-task-lib": "^5.2.10"
+    "azure-pipelines-task-lib": "^5.2.11"
   }
 }
