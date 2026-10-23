@@ -23,14 +23,14 @@ jobs:
 
     steps:
       - name: Harden runner
-        uses: step-security/harden-runner@v2.20.1
+        uses: step-security/harden-runner@v2.22.2
         with:
           egress-policy: audit
 
       - uses: actions/checkout@v7.0.1
 
       - name: Setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v7.0.0
+        uses: actions/setup-node@v7.1.0
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
