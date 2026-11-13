@@ -55,7 +55,7 @@ jobs:
 
     steps:
       - name: Harden runner
-        uses: step-security/harden-runner@v2.20.1
+        uses: step-security/harden-runner@v2.22.4
         with:
           egress-policy: audit
 
@@ -81,7 +81,7 @@ jobs:
           "version=$version" >> $env:GITHUB_OUTPUT
 
       - name: Azure login (OIDC)
-        uses: azure/login@v3.0.1
+        uses: azure/login@v3.1.0
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
@@ -89,7 +89,7 @@ jobs:
 
       - name: Query version
         id: query-version
-        uses: jessehouwing/azdo-marketplace/query-version@v6.3.16
+        uses: jessehouwing/azdo-marketplace/query-version@v6.4.0
         with:
           auth-type: oidc
           publisher-id: ${{ env.PUBLISHER_ID }}
@@ -155,7 +155,7 @@ jobs:
           Write-Host "::$stopMarker::"
 
       - name: Package extension
-        uses: jessehouwing/azdo-marketplace/package@v6.3.16
+        uses: jessehouwing/azdo-marketplace/package@v6.4.0
         id: package
         with:
           publisher-id: ${{ env.PUBLISHER_ID }}
@@ -173,7 +173,7 @@ jobs:
           subject-path: ${{ steps.package.outputs.vsix-file }}
 
       - name: Upload VSIX artifact
-        uses: actions/upload-artifact@v7.0.1
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: vsix
           path: ${{ steps.package.outputs.vsix-file }}
@@ -215,7 +215,7 @@ jobs:
 
     steps:
       - name: Harden runner
-        uses: step-security/harden-runner@v2.20.1
+        uses: step-security/harden-runner@v2.22.4
         with:
           egress-policy: audit
 
@@ -231,20 +231,20 @@ jobs:
           package-manager-cache: false
 
       - name: Download VSIX artifact
-        uses: actions/download-artifact@v8.0.1
+        uses: actions/download-artifact@v8.0.2
         with:
           name: vsix
           path: ${{ runner.temp }}/vsix
 
       - name: Azure login (OIDC)
-        uses: azure/login@v3.0.1
+        uses: azure/login@v3.1.0
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           allow-no-subscriptions: true
 
       - name: Publish preview extension
-        uses: jessehouwing/azdo-marketplace/publish@v6.3.16
+        uses: jessehouwing/azdo-marketplace/publish@v6.4.0
         id: publish
         with:
           auth-type: oidc
@@ -257,14 +257,14 @@ jobs:
           no-wait-validation: true
 
       - name: Wait for validation
-        uses: jessehouwing/azdo-marketplace/wait-for-validation@v6.3.16
+        uses: jessehouwing/azdo-marketplace/wait-for-validation@v6.4.0
         with:
           auth-type: oidc
           vsix-file: ${{ steps.publish.outputs.vsix-file }}
           timeout-minutes: '30'
 
       - name: Share extension
-        uses: jessehouwing/azdo-marketplace/share@v6.3.16
+        uses: jessehouwing/azdo-marketplace/share@v6.4.0
         with:
           auth-type: oidc
           vsix-file: ${{ steps.publish.outputs.vsix-file }}
@@ -272,7 +272,7 @@ jobs:
             https://dev.azure.com/jessehouwing-dev
 
       - name: Install extension
-        uses: jessehouwing/azdo-marketplace/install@v6.3.16
+        uses: jessehouwing/azdo-marketplace/install@v6.4.0
         with:
           auth-type: oidc
           vsix-file: ${{ steps.publish.outputs.vsix-file }}
@@ -280,7 +280,7 @@ jobs:
             https://dev.azure.com/jessehouwing-dev
 
       - name: Wait for installation
-        uses: jessehouwing/azdo-marketplace/wait-for-installation@v6.3.16
+        uses: jessehouwing/azdo-marketplace/wait-for-installation@v6.4.0
         with:
           auth-type: oidc
           vsix-file: ${{ steps.publish.outputs.vsix-file }}
@@ -315,12 +315,12 @@ jobs:
 
     steps:
       - name: Harden runner
-        uses: step-security/harden-runner@v2.20.1
+        uses: step-security/harden-runner@v2.22.4
         with:
           egress-policy: audit
 
       - name: Azure login (OIDC)
-        uses: azure/login@v3.0.1
+        uses: azure/login@v3.1.0
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
@@ -498,7 +498,7 @@ jobs:
 
     steps:
       - name: Harden runner
-        uses: step-security/harden-runner@v2.20.1
+        uses: step-security/harden-runner@v2.22.4
         with:
           egress-policy: audit
 
@@ -514,7 +514,7 @@ jobs:
           package-manager-cache: false
 
       - name: Download VSIX artifact
-        uses: actions/download-artifact@v8.0.1
+        uses: actions/download-artifact@v8.0.2
         with:
           name: vsix
           path: ${{ runner.temp }}/vsix
@@ -527,7 +527,7 @@ jobs:
         shell: bash
 
       - name: Azure login (OIDC)
-        uses: azure/login@v3.0.1
+        uses: azure/login@v3.1.0
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
@@ -537,7 +537,7 @@ jobs:
       # previous run's publish succeeded but "Wait for validation" timed out).
       - name: Check current marketplace version
         id: check-version
-        uses: jessehouwing/azdo-marketplace/query-version@v6.3.16
+        uses: jessehouwing/azdo-marketplace/query-version@v6.4.0
         with:
           auth-type: oidc
           publisher-id: ${{ env.PUBLISHER_ID }}
@@ -555,7 +555,7 @@ jobs:
         shell: pwsh
 
       - name: Publish production extension
-        uses: jessehouwing/azdo-marketplace/publish@v6.3.16
+        uses: jessehouwing/azdo-marketplace/publish@v6.4.0
         id: publish
         if: steps.check-version.outputs.current-version != needs.prepare-release.outputs.version
         with:
@@ -566,7 +566,7 @@ jobs:
           extension-visibility: public
 
       - name: Wait for validation
-        uses: jessehouwing/azdo-marketplace/wait-for-validation@v6.3.16
+        uses: jessehouwing/azdo-marketplace/wait-for-validation@v6.4.0
         with:
           auth-type: oidc
           vsix-file: ${{ steps.publish.outputs.vsix-file || format('{0}/vsix/{1}', runner.temp, needs.prepare-release.outputs.vsix-file-name) }}
@@ -585,7 +585,7 @@ jobs:
 
     steps:
       - name: Harden runner
-        uses: step-security/harden-runner@v2.20.1
+        uses: step-security/harden-runner@v2.22.4
         with:
           egress-policy: audit
 
@@ -594,7 +594,7 @@ jobs:
           ref: release/v${{ needs.prepare-release.outputs.version }}
 
       - name: Download VSIX artifact
-        uses: actions/download-artifact@v8.0.1
+        uses: actions/download-artifact@v8.0.2
         with:
           name: vsix
           path: ${{ runner.temp }}/vsix
@@ -618,7 +618,7 @@ jobs:
           git push origin "v$env:RELEASE_VERSION"
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v3.0.2
+        uses: softprops/action-gh-release@v3.0.4
         with:
           tag_name: v${{ needs.prepare-release.outputs.version }}
           name: v${{ needs.prepare-release.outputs.version }}
@@ -644,19 +644,19 @@ jobs:
 
     steps:
       - name: Harden runner
-        uses: step-security/harden-runner@v2.20.1
+        uses: step-security/harden-runner@v2.22.4
         with:
           egress-policy: audit
 
       - name: Azure login (OIDC)
-        uses: azure/login@v3.0.1
+        uses: azure/login@v3.1.0
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           allow-no-subscriptions: true
 
       - name: Unshare preview extension
-        uses: jessehouwing/azdo-marketplace/unshare@v6.3.16
+        uses: jessehouwing/azdo-marketplace/unshare@v6.4.0
         continue-on-error: true
         with:
           auth-type: oidc
