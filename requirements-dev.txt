@@ -1,0 +1,4 @@
+# Python tooling used by CI. Keep in sync with Dependabot's pip updates.
+check-jsonschema==0.39.0
+pre-commit==4.7.0
+zizmor==1.32.0
