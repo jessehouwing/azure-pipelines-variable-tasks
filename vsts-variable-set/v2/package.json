@@ -7,7 +7,8 @@
     "email": "jesse.houwing@gmail.com"
   },
   "scripts": {
-    "build": "rollup -c rollup.config.mjs"
+    "build": "npm run typecheck && rollup -c rollup.config.mjs",
+    "typecheck": "node ../../node_modules/@typescript/native/bin/tsc -p tsconfig.json --noEmit --composite false --incremental false"
   },
   "dependencies": {
     "azure-pipelines-task-lib": "5.282.0"
