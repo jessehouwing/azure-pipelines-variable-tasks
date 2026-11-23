@@ -40,6 +40,11 @@ updates:
       - patch
     development-dependencies:
       dependency-type: development
+  ignore:
+  - dependency-name: "azure-pipelines-task-lib"
+    update-types: [ "version-update:semver-major" ]
+  - dependency-name: "azure-pipelines-task-lib"
+    versions: [ ">=5.283.0" ]
 - package-ecosystem: "npm"
   directories:
   - "/vsts-variable-set/v1"
@@ -63,3 +68,5 @@ updates:
   ignore:
   - dependency-name: "azure-pipelines-task-lib"
     update-types: [ "version-update:semver-major" ]
+  - dependency-name: "azure-pipelines-task-lib"
+    versions: [ ">=5.283.0" ]

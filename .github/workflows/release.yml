@@ -89,7 +89,7 @@ jobs:
 
       - name: Query version
         id: query-version
-        uses: jessehouwing/azdo-marketplace/query-version@v6.4.0
+        uses: jessehouwing/azdo-marketplace/query-version@v6.4.1
         with:
           auth-type: oidc
           publisher-id: ${{ env.PUBLISHER_ID }}
@@ -155,7 +155,7 @@ jobs:
           Write-Host "::$stopMarker::"
 
       - name: Package extension
-        uses: jessehouwing/azdo-marketplace/package@v6.4.0
+        uses: jessehouwing/azdo-marketplace/package@v6.4.1
         id: package
         with:
           publisher-id: ${{ env.PUBLISHER_ID }}
@@ -244,7 +244,7 @@ jobs:
           allow-no-subscriptions: true
 
       - name: Publish preview extension
-        uses: jessehouwing/azdo-marketplace/publish@v6.4.0
+        uses: jessehouwing/azdo-marketplace/publish@v6.4.1
         id: publish
         with:
           auth-type: oidc
@@ -257,14 +257,14 @@ jobs:
           no-wait-validation: true
 
       - name: Wait for validation
-        uses: jessehouwing/azdo-marketplace/wait-for-validation@v6.4.0
+        uses: jessehouwing/azdo-marketplace/wait-for-validation@v6.4.1
         with:
           auth-type: oidc
           vsix-file: ${{ steps.publish.outputs.vsix-file }}
           timeout-minutes: '30'
 
       - name: Share extension
-        uses: jessehouwing/azdo-marketplace/share@v6.4.0
+        uses: jessehouwing/azdo-marketplace/share@v6.4.1
         with:
           auth-type: oidc
           vsix-file: ${{ steps.publish.outputs.vsix-file }}
@@ -272,7 +272,7 @@ jobs:
             https://dev.azure.com/jessehouwing-dev
 
       - name: Install extension
-        uses: jessehouwing/azdo-marketplace/install@v6.4.0
+        uses: jessehouwing/azdo-marketplace/install@v6.4.1
         with:
           auth-type: oidc
           vsix-file: ${{ steps.publish.outputs.vsix-file }}
@@ -280,7 +280,7 @@ jobs:
             https://dev.azure.com/jessehouwing-dev
 
       - name: Wait for installation
-        uses: jessehouwing/azdo-marketplace/wait-for-installation@v6.4.0
+        uses: jessehouwing/azdo-marketplace/wait-for-installation@v6.4.1
         with:
           auth-type: oidc
           vsix-file: ${{ steps.publish.outputs.vsix-file }}
@@ -537,7 +537,7 @@ jobs:
       # previous run's publish succeeded but "Wait for validation" timed out).
       - name: Check current marketplace version
         id: check-version
-        uses: jessehouwing/azdo-marketplace/query-version@v6.4.0
+        uses: jessehouwing/azdo-marketplace/query-version@v6.4.1
         with:
           auth-type: oidc
           publisher-id: ${{ env.PUBLISHER_ID }}
@@ -555,7 +555,7 @@ jobs:
         shell: pwsh
 
       - name: Publish production extension
-        uses: jessehouwing/azdo-marketplace/publish@v6.4.0
+        uses: jessehouwing/azdo-marketplace/publish@v6.4.1
         id: publish
         if: steps.check-version.outputs.current-version != needs.prepare-release.outputs.version
         with:
@@ -566,7 +566,7 @@ jobs:
           extension-visibility: public
 
       - name: Wait for validation
-        uses: jessehouwing/azdo-marketplace/wait-for-validation@v6.4.0
+        uses: jessehouwing/azdo-marketplace/wait-for-validation@v6.4.1
         with:
           auth-type: oidc
           vsix-file: ${{ steps.publish.outputs.vsix-file || format('{0}/vsix/{1}', runner.temp, needs.prepare-release.outputs.vsix-file-name) }}
@@ -656,7 +656,7 @@ jobs:
           allow-no-subscriptions: true
 
       - name: Unshare preview extension
-        uses: jessehouwing/azdo-marketplace/unshare@v6.4.0
+        uses: jessehouwing/azdo-marketplace/unshare@v6.4.1
         continue-on-error: true
         with:
           auth-type: oidc
