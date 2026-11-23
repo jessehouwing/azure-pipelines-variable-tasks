@@ -19,7 +19,7 @@ workflows:
         - 'actions/setup-node@v7.1.0'
         - 'actions/upload-artifact@v7.0.2'
         - 'azure/login@v3.1.0'
-        - 'jessehouwing/azdo-marketplace@v6.4.0'
+        - 'jessehouwing/azdo-marketplace@v6.4.1'
         - 'softprops/action-gh-release@v3.0.4'
         - 'step-security/harden-runner@v2.22.4'
 dependencies:
@@ -70,9 +70,9 @@ dependencies:
         commit: 'sha1-811981eec3c108f41783f194522fde91a34301a4'
         owner_id: 4173387
         repo_id: 1109249632
-    'jessehouwing/azdo-marketplace@v6.4.0':
-        ref: 'v6.4.0'
-        commit: 'sha1-7bb1f7d4913cae07b6115d54fbcc71e8661556e7'
+    'jessehouwing/azdo-marketplace@v6.4.1':
+        ref: 'v6.4.1'
+        commit: 'sha1-e112952a289a937980a8c3016f5d3ace2c58a3f8'
         owner_id: 4173387
         repo_id: 1158033287
     'softprops/action-gh-release@v3.0.4':

@@ -20,6 +20,15 @@
   "packageRules": [
     {
       "matchDatasources": [
+        "node-version"
+      ],
+      "matchDepNames": [
+        "node"
+      ],
+      "allowedVersions": "/^v?24(?:\\.|$)/"
+    },
+    {
+      "matchDatasources": [
         "azure-pipelines-tasks"
       ],
       "extractVersion": "^(?<version>\\d+)"
