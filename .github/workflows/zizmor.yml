@@ -1,0 +1,80 @@
+name: GitHub Actions Security Analysis with zizmor
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['**']
+
+permissions: {}
+
+jobs:
+  validate-yaml:
+    name: Validate YAML and workflows
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2.23.0
+        with:
+          egress-policy: audit
+
+      - name: Checkout repository
+        uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup Python
+        uses: actions/setup-python@v7.1.0
+        with:
+          python-version-file: '.python-version'
+
+      - name: Install validation tools
+        run: python3 -m pip install -r requirements-dev.txt
+
+      - name: Validate workflow and Dependabot schemas
+        run: |
+          check-jsonschema --builtin-schema vendor.github-workflows .github/workflows/*.yml
+          check-jsonschema --builtin-schema vendor.dependabot .github/dependabot.yml
+
+      - name: Validate Azure Pipelines YAML syntax
+        run: python3 -c "from pathlib import Path; from ruamel.yaml import YAML; yaml = YAML(typ='safe'); [yaml.load(p) for p in Path('.github/pipelines').glob('*.yml')]"
+
+  zizmor:
+    name: zizmor via PyPI
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      contents: read
+      actions: read
+
+    steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2.23.0
+        with:
+          egress-policy: audit
+
+      - name: Checkout repository
+        uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup Python
+        uses: actions/setup-python@v7.1.0
+        with:
+          python-version-file: '.python-version'
+
+      - name: Install zizmor
+        run: python3 -m pip install -r requirements-dev.txt
+
+      - name: Run zizmor
+        run: zizmor --format=sarif . > results.sarif
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v4.39.3
+        with:
+          sarif_file: results.sarif
+          category: zizmor
